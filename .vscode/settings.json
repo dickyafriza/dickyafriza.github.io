@@ -2,5 +2,6 @@
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "[javascript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "livePreview.defaultPreviewPath": "c:\\xampp\\htdocs\\Web Profile\\dickyafriza.github.io\\index.html"
 }
