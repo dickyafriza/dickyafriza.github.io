@@ -17,7 +17,7 @@ body {
 }
 .navbar.scrolled {
   background-color: rgba(52, 58, 64, 0.9);
-  backdrop-filter: blur(10px);
+  backdrop-filter: blur(15px);
 }
 .navbar-brand, .nav-link {
   color: #fff !important;
