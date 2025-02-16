@@ -1,62 +1,54 @@
-// event pada saat link di klik
-$('.page-scroll').on('click', function(e){
-
-	// ambil isi href
-	var tujuan = $(this).attr('href');
-	// tangkap elemen ybs
-	var elemenTujuan = $(tujuan);
-
-	// pindahkan scroll
-	$('body').animate({
-		scrollTop: elemenTujuan.offset().top - 50
-	}, 1250, 'easeInOutExpo');
-
+// Smooth scroll for links with class 'page-scroll'
+$('.page-scroll').on('click', function(e) {
+	// Prevent default anchor click behavior
 	e.preventDefault();
-
-});
-
-// parallax
-$(window).on('load', function(){
-	$('.kiri').addClass('kiri-go');
-	$('.kanan').addClass('kanan-go')
-});
-
-$(window).scroll(function(){
+  
+	// Store hash
+	var hash = this.hash;
+  
+	// Using jQuery's animate() method to add smooth page scroll
+	$('html, body').animate({
+	  scrollTop: $(hash).offset().top
+	}, 800, function(){
+	  window.location.hash = hash;
+	});
+  });
+  
+  // Parallax effect
+  $(window).scroll(function() {
 	var wScroll = $(this).scrollTop();
-
+  
 	$('.jumbotron img').css({
-		'transform': 'translate(0px, '+ wScroll / 4 +'%)'
+	  'transform': 'translate(0px, ' + wScroll / 4 + '%)',
+	  'z-index': wScroll > 0 ? 0 : 1
 	});
-
+  
 	$('.jumbotron h1').css({
-		'transform': 'translate(0px, '+ wScroll / 2 +'%)'
+	  'transform': 'translate(0px, ' + wScroll / 2 + '%)',
+	  'z-index': wScroll > 0 ? 0 : 1
 	});
-
+  
 	$('.jumbotron p').css({
-		'transform': 'translate(0px, '+ wScroll / 1.2 +'%)'
+	  'transform': 'translate(0px, ' + wScroll / 1.2 + '%)',
+	  'z-index': wScroll > 0 ? 0 : 1
 	});
-
-
-	// portfolio
-	if( wScroll > $('.portfolio').offset().top - 600 ) {
-		
-		$('.portfolio .thumbnail').each(function(i) {
-			setTimeout(function() {
-				$('.portfolio .thumbnail').eq(i).addClass('muncul');
-			}, 180 * (i+1))
-
-		});
-
+  
+	// Portfolio animation
+	if (wScroll > $('.portfolio').offset().top - 600) {
+	  $('.portfolio .thumbnail').each(function(i) {
+		setTimeout(function() {
+		  $('.portfolio .thumbnail').eq(i).addClass('muncul');
+		}, 180 * (i + 1));
+	  });
 	}
 
-});
-
-
-
-
-
-
-
-
-
-
+	// Toggle navbar class on scroll
+	if (wScroll > 50) {
+	  $('.navbar').addClass('scrolled');
+	} else {
+	  $('.navbar').removeClass('scrolled');
+	}
+  });
+  
+  // Update year in footer
+  document.getElementById('year').textContent = new Date().getFullYear();
