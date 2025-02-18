@@ -60,3 +60,7 @@ $('.page-scroll').on('click', function(e) {
   gsap.from('.navbar', { duration: 1, y: -50, opacity: 0, ease: 'power2.out' });
   gsap.from('.about h2', { duration: 1, y: 50, opacity: 0, delay: 1.5 });
   gsap.from('.about p', { duration: 1, y: 50, opacity: 0, delay: 2 });
+  gsap.from('.portfolio h2', { duration: 1, y: 50, opacity: 0, delay: 2.5 });
+  gsap.from('.portfolio .thumbnail', { duration: 1, y: 50, opacity: 0, delay: 3, stagger: 0.2 });
+  gsap.from('.contact h2', { duration: 1, y: 50, opacity: 0, delay: 3.5 });
+  gsap.from('.contact-iframe', { duration: 1, y: 50, opacity: 0, delay: 4 });

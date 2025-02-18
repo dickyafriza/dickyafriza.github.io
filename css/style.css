@@ -1,5 +1,5 @@
 body {
-  font-family: 'Rubik', sans-serif; /* Change font to Rubik */
+  font-family: 'Montserrat', sans-serif; /* Change font to Montserrat for a modern minimalist look */
   font-weight: bold; /* Set font weight to bold */
   background-color: #f8f9fa;
   color: #343a40;
@@ -71,9 +71,11 @@ body {
   text-align: justify; /* Justify text in about section */
   margin-left: auto;
   margin-right: auto;
+  max-width: 100%; /* Ensure the text does not exceed the container width */
 }
 .about h2 {
   text-align: center; /* Center align the title */
+  width: 100%; /* Ensure the title spans the full width */
 }
 .portfolio {
   background-color: #f8f9fa;
@@ -88,6 +90,9 @@ body {
 .portfolio .thumbnail {
   margin-bottom: 1.5rem;
 }
+.portfolio h2, .portfolio p {
+  text-align: center; /* Center align the title and description in the portfolio section */
+}
 .contact .form-control, .contact button {
   border-radius: 25px;
   background-color: #fff;
@@ -99,7 +104,7 @@ body {
 }
 .contact-iframe {
   width: 100%; /* Make iframe responsive */
-  height: auto;
+  height: 800px; /* Set a proper height for better visibility */
   min-height: 500px; /* Set a minimum height for better visibility */
 }
 footer {
