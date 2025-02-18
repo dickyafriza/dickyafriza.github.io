@@ -52,3 +52,11 @@ $('.page-scroll').on('click', function(e) {
   
   // Update year in footer
   document.getElementById('year').textContent = new Date().getFullYear();
+
+  // GSAP animations
+  gsap.from('.jumbotron img', { duration: 1, y: -50, opacity: 0, ease: 'bounce' });
+  gsap.from('.jumbotron h1', { duration: 1, x: -200, opacity: 0, delay: 0.5 });
+  gsap.from('.jumbotron p', { duration: 1, x: 200, opacity: 0, delay: 1 });
+  gsap.from('.navbar', { duration: 1, y: -50, opacity: 0, ease: 'power2.out' });
+  gsap.from('.about h2', { duration: 1, y: 50, opacity: 0, delay: 1.5 });
+  gsap.from('.about p', { duration: 1, y: 50, opacity: 0, delay: 2 });

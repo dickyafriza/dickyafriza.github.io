@@ -63,6 +63,18 @@ body {
   border-top: 2px solid #007bff;
   width: 50px;
 }
+.about p, .contact-iframe {
+  text-align: justify; /* Justify text in about section and iframe */
+}
+.about p {
+  font-weight: normal; /* Remove bold font-weight for text in about section */
+  text-align: justify; /* Justify text in about section */
+  margin-left: auto;
+  margin-right: auto;
+}
+.about h2 {
+  text-align: center; /* Center align the title */
+}
 .portfolio {
   background-color: #f8f9fa;
 }
@@ -84,6 +96,11 @@ body {
 }
 .contact .form-control::placeholder {
   color: #6c757d;
+}
+.contact-iframe {
+  width: 100%; /* Make iframe responsive */
+  height: auto;
+  min-height: 500px; /* Set a minimum height for better visibility */
 }
 footer {
   background-color: #343a40;
