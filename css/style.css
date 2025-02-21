@@ -52,9 +52,17 @@ body {
 }
 .about, .portfolio, .contact {
   padding: 4rem 0;
-  border-radius: 25px;
+  border-radius: 15px; /* Improve border radius */
   background-color: #fff;
   margin-bottom: 2rem;
+}
+.about .container, .contact .container {
+  border: 1px solid #ddd; /* Add border to the content within sections */
+  border-radius: 15px; /* Improve border radius */
+  padding: 2rem; /* Add padding inside the border */
+}
+.portfolio .container {
+  border: none; /* Remove border from the portfolio section */
 }
 .about h2, .portfolio h2, .contact h2 {
   color: #007bff;
@@ -83,9 +91,11 @@ body {
 .portfolio img {
   width: 100%;
   height: auto;
-  border-radius: 25px;
+  border-radius: 15px; /* Add border radius to each image */
   margin-bottom: 1.5rem;
   margin-top: 1.5rem;
+  border: 1px solid #ddd; /* Add border to each image */
+  padding: 0.5rem; /* Add padding inside the border */
 }
 .portfolio .thumbnail {
   margin-bottom: 1.5rem;
