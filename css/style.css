@@ -1,6 +1,5 @@
 body {
-  font-family: 'Montserrat', sans-serif; /* Change font to Montserrat for a modern minimalist look */
-  font-weight: bold; /* Set font weight to bold */
+  font-family: 'Arial', sans-serif;
   background-color: #f8f9fa;
   color: #343a40;
   margin: 0;
@@ -17,7 +16,7 @@ body {
 }
 .navbar.scrolled {
   background-color: rgba(52, 58, 64, 0.9);
-  backdrop-filter: blur(15px);
+  backdrop-filter: blur(10px);
 }
 .navbar-brand, .nav-link {
   color: #fff !important;
@@ -30,9 +29,10 @@ body {
 .jumbotron {
   background-image: url('../img/header-bg.jpg');
   color: #fff;
+  padding: 4rem 2rem;
   border-radius: 0 0 25px 25px;
   margin-bottom: 0;
-  margin-top: 0; /* Add more space at the top */
+  margin-top: -56px; /* Adjust for fixed navbar height */
   padding-top: 56px; /* Adjust for fixed navbar height */
 }
 .jumbotron img {
@@ -42,7 +42,6 @@ body {
   border: 5px solid #fff;
   border-radius: 50%;
   margin-bottom: 1rem; /* Add space below the photo */
-  margin-top: 2rem; /* Increase space above the photo to 2rem */
 }
 .jumbotron h1 {
   color: #fff;
@@ -52,17 +51,9 @@ body {
 }
 .about, .portfolio, .contact {
   padding: 4rem 0;
-  border-radius: 15px; /* Improve border radius */
+  border-radius: 25px;
   background-color: #fff;
   margin-bottom: 2rem;
-}
-.about .container, .contact .container {
-  border: 1px solid #ddd; /* Add border to the content within sections */
-  border-radius: 15px; /* Improve border radius */
-  padding: 2rem; /* Add padding inside the border */
-}
-.portfolio .container {
-  border: none; /* Remove border from the portfolio section */
 }
 .about h2, .portfolio h2, .contact h2 {
   color: #007bff;
@@ -71,37 +62,18 @@ body {
   border-top: 2px solid #007bff;
   width: 50px;
 }
-.about p, .contact-iframe {
-  text-align: justify; /* Justify text in about section and iframe */
-}
-.about p {
-  font-weight: normal; /* Remove bold font-weight for text in about section */
-  text-align: justify; /* Justify text in about section */
-  margin-left: auto;
-  margin-right: auto;
-  max-width: 100%; /* Ensure the text does not exceed the container width */
-}
-.about h2 {
-  text-align: center; /* Center align the title */
-  width: 100%; /* Ensure the title spans the full width */
-}
 .portfolio {
   background-color: #f8f9fa;
 }
 .portfolio img {
   width: 100%;
   height: auto;
-  border-radius: 15px; /* Add border radius to each image */
+  border-radius: 25px;
   margin-bottom: 1.5rem;
   margin-top: 1.5rem;
-  border: 1px solid #ddd; /* Add border to each image */
-  padding: 0.5rem; /* Add padding inside the border */
 }
 .portfolio .thumbnail {
   margin-bottom: 1.5rem;
-}
-.portfolio h2, .portfolio p {
-  text-align: center; /* Center align the title and description in the portfolio section */
 }
 .contact .form-control, .contact button {
   border-radius: 25px;
@@ -111,11 +83,6 @@ body {
 }
 .contact .form-control::placeholder {
   color: #6c757d;
-}
-.contact-iframe {
-  width: 100%; /* Make iframe responsive */
-  height: 800px; /* Set a proper height for better visibility */
-  min-height: 500px; /* Set a minimum height for better visibility */
 }
 footer {
   background-color: #343a40;
