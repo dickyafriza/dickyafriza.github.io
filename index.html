@@ -1,189 +1,231 @@
 <!DOCTYPE html>
 <html lang="en" id="home">
-  <head>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Profile Dicky Afriza</title>
-    <!-- Bootstrap -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet" />
-    <link rel="stylesheet" href="css/style.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet"> <!-- Add Google Fonts link for Poppins -->
-    <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap" rel="stylesheet"> <!-- Add Google Fonts link for Rubik -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet"> <!-- Add Google Fonts link for Montserrat -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.9.1/gsap.min.js"></script> <!-- Add GSAP library -->
-  </head>
-  <body>
-    <header class="header-bg">
-      <nav class="navbar navbar-expand-lg navbar-dark">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#home">Who Me?</a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-toggle="collapse"
-            data-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ml-auto">
-              <li class="nav-item">
-                <a class="nav-link" href="#home">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#about">About</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#portfolio">Portfolio</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#contact">Contact</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    </header>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Profile Dicky Afriza</title>
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts (rekomendasi via CSS Tailwind untuk performa) -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+</head>
+<body class="font-sans bg-gray-50">
 
-    <main>
-      <section class="jumbotron text-center">
-        <img src="img/dicky.jpg" class="rounded-circle" alt="Muhammad Dicky Afriza" />
-        <h1 class="display-4">Muhammad Dicky Afriza</h1>
-        <p class="lead">Web Developer | Traveler | Kulinarisch</p>
-      </section>
-
-    <!-- about -->
-    <section class="about" id="about">
-      <div class="container">
-        <div class="row">
-          <div class="col-sm-12">
-            <h2 class="text-center">About</h2>
-            <hr />
-          </div>
-        </div>
-
-        <div class="row">
-            <div class="col-sm-5 offset-sm-1 kiri" align="justify">
-            <p>
-              I am Muhammad Dicky Afriza, born in Semarang on August 6 2001,
-              currently I am studying in the Department of Informatics
-              Engineering, Dian Nuswantoro University Semarang. Due to the
-              impact of the COVID-19 outbreak, I returned to my village to be
-              precise in Kendal, lectures were also conducted online, but I
-              still tried to study productively by participating in a program
-              from an organization called Griya Peradaban, namely alternative
-              lectures.
-            </p>
-            </div>
-          <div class="col-sm-5 kanan" aligns="justify">
-            <p>
-              Even though I grew up in a simple family, my parents always
-              motivate and encourage me in any case. Besides lectures, sometimes
-              I take the time to help my relatives/friends in light tasks or
-              fixing problems on computers/laptops.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!-- akhir about -->
-
-    <!-- portfolio -->
-    <section id="portfolio" class="portfolio">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 text-center">
-            <h2>Portfolio</h2>
-            <hr />
-          </div>
-          <div class="row">
-            <div class="col-md-4">
-              <a href="#" class="thumbnail">
-                <img src="img/portfolio/web (1).png" alt="Project 1">
-              </a>
-            </div>
-            <div class="col-md-4">
-              <a href="#" class="thumbnail">
-                <img src="img/portfolio/web (2).png" alt="Project 2">
-              </a>
-            </div>
-            <div class="col-md-4">
-              <a href="#" class="thumbnail">
-                <img src="img/portfolio/web (3).png" alt="Project 3">
-              </a>
-            </div>
-            <div class="col-md-4">
-              <a href="#" class="thumbnail">
-                <img src="img/portfolio/web (4).png" alt="Project 4">
-              </a>
-            </div>
-            <div class="col-md-4">
-              <a href="#" class="thumbnail">
-                <img src="img/portfolio/web (5).png" alt="Project 5">
-              </a>
-            </div>
-            <div class="col-md-4">
-              <a href="#" class="thumbnail">
-                <img src="img/portfolio/web (6).png" alt="Project 6">
-              </a>
-            </div>
-            <div class="col-md-4">
-              <a href="#" class="thumbnail">
-                <img src="img/portfolio/web (7).png" alt="Project 7">
-              </a>
-            </div>
-            <div class="col-md-4">
-              <a href="#" class="thumbnail">
-                <img src="img/portfolio/web (8).png" alt="Project 8">
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-    <!-- akhir portfolio -->
-
-    <!-- contact -->
-    <section id="contact" class="contact">
-      <div class="container">
-        <div class="row">
-          <div class="col-12 text-center">
-            <h2>Contact</h2>
-            <hr />
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-8 offset-md-2">
-            <!-- Replace form with Google Forms iframe -->
-            <iframe class="contact-iframe" src="https://docs.google.com/forms/d/e/1FAIpQLSeMvEopNHPg-E2Lcdi5KZeV3Fc5gaGNZs_-Mu26s8VrI6_9qw/viewform?embedded=true" frameborder="0" marginheight="0" marginwidth="0">Memuat…</iframe>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="text-center py-3">
-    <div class="container"></div>
-      <p>&copy; <span id="year"></span> | Built with <i class="fas fa-heart text-danger"></i> by <a href="http://instagram.com/dickyafrz">Muhammad Dicky Afriza</a>.</p>
-      <a href="https://www.youtube.com/channel/UC7xRxaGHb1D309DKP31NS7w" class="btn btn-danger">
-        <i class="fas fa-play"></i> Subscribe to YouTube
-      </a>
+<!-- HEADER MODERN GLASS GRADIENT -->
+<header class="relative bg-gradient-to-tr from-blue-900/80 via-blue-700/70 to-cyan-400/70
+    backdrop-blur-xl border-b border-blue-100/25 shadow-xl overflow-hidden">
+  <!-- Lampu blur dekoratif -->
+  <span class="absolute -top-12 -left-16 w-56 h-56 bg-cyan-300/40 rounded-full blur-2xl"></span>
+  <span class="absolute top-6 right-10 w-44 h-44 bg-blue-400/40 rounded-full blur-2xl"></span>
+  <span class="absolute hidden md:block right-12 bottom-0 animate-pulse">
+    <svg width="60" height="38" fill="none"><g fill="#fff" fill-opacity=".08">
+      <circle cx="6.5" cy="6" r="6"/><circle cx="6.5" cy="32" r="6"/>
+      <circle cx="32.5" cy="6" r="6"/><circle cx="32.5" cy="32" r="6"/>
+      <circle cx="58.5" cy="6" r="6"/><circle cx="58.5" cy="32" r="6"/>
+    </g></svg>
+  </span>
+  <nav class="relative flex items-center justify-between max-w-6xl mx-auto py-5 px-4">
+    <a href="#home" class="flex items-center gap-1 text-white text-2xl font-black tracking-wider
+      drop-shadow-lg hover:text-cyan-100 transition">Dicky
+      <span class="inline-block w-2 h-2 bg-white/70 rounded-full ml-1"></span>
+    </a>
+    <div class="space-x-1 hidden md:flex">
+      <a href="#home" class="px-4 py-2 rounded-full text-white font-semibold bg-white/10 hover:bg-blue-400/30 transition">Home</a>
+      <a href="#about" class="px-4 py-2 rounded-full text-white font-semibold bg-white/10 hover:bg-blue-400/30 transition">About</a>
+      <a href="#portfolio" class="px-4 py-2 rounded-full text-white font-semibold bg-white/10 hover:bg-blue-400/30 transition">Portfolio</a>
+      <a href="#contact" class="px-4 py-2 rounded-full text-white font-semibold bg-white/10 hover:bg-blue-400/30 transition">Contact</a>
     </div>
-  </footer>
+    <!-- Burger menu (mobile) -->
+    <button class="md:hidden text-white focus:outline-none" onclick="document.getElementById('mobileMenu').classList.toggle('hidden')">
+      <svg class="h-7 w-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </nav>
+  <div id="mobileMenu" class="md:hidden hidden px-4 pb-4">
+    <a href="#home" class="block py-2 px-4 my-1 rounded-full text-white bg-white/10 hover:bg-blue-400/30 transition">Home</a>
+    <a href="#about" class="block py-2 px-4 my-1 rounded-full text-white bg-white/10 hover:bg-blue-400/30 transition">About</a>
+    <a href="#portfolio" class="block py-2 px-4 my-1 rounded-full text-white bg-white/10 hover:bg-blue-400/30 transition">Portfolio</a>
+    <a href="#contact" class="block py-2 px-4 my-1 rounded-full text-white bg-white/10 hover:bg-blue-400/30 transition">Contact</a>
+  </div>
+</header>
 
-  <!-- Bootstrap JS and dependencies -->
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  <script src="js/script.js"></script>
+<!-- HERO SECTION -->
+<section class="relative pt-12 pb-20 flex flex-col items-center justify-center
+    bg-gradient-to-br from-blue-900/80 via-cyan-700/60 to-blue-300/40
+    min-h-[60vh] overflow-hidden text-center">
+  <!-- Blur Lampu -->
+  <span class="absolute top-0 left-1/2 -translate-x-1/2 w-96 h-32 bg-cyan-300/30 blur-3xl"></span>
+  <img src="img/dicky.jpg" class="rounded-full w-36 h-36 object-cover shadow-xl border-4 border-white/50
+      hover:scale-110 transition-transform duration-300 z-10" alt="Muhammad Dicky Afriza" />
+  <h1 class="text-4xl sm:text-5xl font-bold text-white drop-shadow-lg mt-6 font-[Montserrat]">
+    Muhammad Dicky Afriza
+  </h1>
+  <p class="mt-2 text-xl sm:text-2xl text-cyan-50 font-medium drop-shadow">Web Developer <span class="text-cyan-300 font-normal">· Traveler · Kulinarisch</span></p>
+  <span class="absolute right-8 bottom-8 hidden md:block animate-pulse">
+    <svg width="52" height="26" fill="none"><g fill="#fff" fill-opacity=".10"><circle cx="8" cy="8" r="8"/><circle cx="44" cy="8" r="8"/></g></svg>
+  </span>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="about"
+  class="relative py-16 bg-gradient-to-tr from-white via-blue-100/60 to-cyan-100/80 backdrop-blur-sm">
+  <div class="absolute -top-10 left-6 w-40 h-40 bg-blue-400/20 rounded-full blur-2xl"></div>
+  <div class="max-w-4xl mx-auto px-6 flex flex-col md:flex-row gap-8 items-center">
+    <div class="flex-1 bg-white/70 shadow-lg rounded-2xl p-8 md:mr-4 border border-blue-100/40 backdrop-blur-lg transition hover:scale-105 hover:shadow-2xl">
+      <h2 class="font-bold text-2xl mb-4 text-blue-900/90">About</h2>
+      <p class="text-gray-800 leading-relaxed">
+        I am Muhammad Dicky Afriza, born in Semarang on August 6 2001.<br/>
+        Currently I am studying Informatics Engineering at Dian Nuswantoro University, Semarang.<br/>
+        The pandemic brought me back to Kendal, I continued to learn productively online and by joining Griya Peradaban's alternative lectures.
+      </p>
+    </div>
+    <div class="flex-1 bg-white/70 shadow-lg rounded-2xl p-8 md:ml-4 border border-blue-100/40 backdrop-blur-lg transition hover:scale-105 hover:shadow-2xl">
+      <h2 class="font-bold text-xl mb-4 text-blue-900/80">Personal</h2>
+      <p class="text-gray-800 leading-relaxed">
+        Despite a simple family background, my parents always encourage and motivate me. Outside of class, I often help friends or relatives troubleshoot computer and laptop problems.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO SECTION -->
+<section id="portfolio" class="relative py-16 bg-transparent">
+  <span class="absolute right-0 bottom-0 lg:w-80 w-40 h-28 bg-cyan-400/20 blur-2xl"></span>
+  <h2 class="text-3xl font-bold text-blue-800 text-center mb-10">Portfolio</h2>
+  <div class="max-w-6xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-7 px-4 z-10">
+    <!-- Repeat for each portfolio item -->
+    <div class="rounded-2xl bg-white/60 border border-blue-100/40 shadow-lg backdrop-blur-md p-2
+      transition transform hover:scale-105 hover:shadow-2xl">
+      <img src="img/portfolio/web (1).png" alt="Project 1"
+           class="w-full h-48 object-cover rounded-xl shadow hover:brightness-110 transition" />
+    </div>
+    <div class="rounded-2xl bg-white/60 border border-blue-100/40 shadow-lg backdrop-blur-md p-2
+      transition transform hover:scale-105 hover:shadow-2xl">
+      <img src="img/portfolio/web (2).png" alt="Project 2"
+           class="w-full h-48 object-cover rounded-xl shadow hover:brightness-110 transition" />
+    </div>
+    <div class="rounded-2xl bg-white/60 border border-blue-100/40 shadow-lg backdrop-blur-md p-2
+      transition transform hover:scale-105 hover:shadow-2xl">
+      <img src="img/portfolio/web (3).png" alt="Project 3"
+           class="w-full h-48 object-cover rounded-xl shadow hover:brightness-110 transition" />
+    </div>
+    <div class="rounded-2xl bg-white/60 border border-blue-100/40 shadow-lg backdrop-blur-md p-2
+      transition transform hover:scale-105 hover:shadow-2xl">
+      <img src="img/portfolio/web (6).png" alt="Project 3"
+           class="w-full h-48 object-cover rounded-xl shadow hover:brightness-110 transition" />
+    </div>
+    <div class="rounded-2xl bg-white/60 border border-blue-100/40 shadow-lg backdrop-blur-md p-2
+      transition transform hover:scale-105 hover:shadow-2xl">
+      <img src="img/portfolio/web (7).png" alt="Project 3"
+           class="w-full h-48 object-cover rounded-xl shadow hover:brightness-110 transition" />
+    </div>
+    <div class="rounded-2xl bg-white/60 border border-blue-100/40 shadow-lg backdrop-blur-md p-2
+      transition transform hover:scale-105 hover:shadow-2xl">
+      <img src="img/portfolio/web (8).png" alt="Project 3"
+           class="w-full h-48 object-cover rounded-xl shadow hover:brightness-110 transition" />
+    </div>
+    <!-- Tambahkan item lain seperti ini -->
+  </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact" class="relative py-16 bg-gradient-to-br from-cyan-100/80 via-white to-cyan-200/60">
+  <span class="absolute left-0 top-[40%] w-32 h-32 bg-cyan-300/20 blur-2xl"></span>
+  <h2 class="text-3xl font-bold text-blue-800 text-center mb-10">Contact</h2>
+  <div class="max-w-lg mx-auto bg-white/70 rounded-2xl shadow-xl p-8 border border-blue-100/40 backdrop-blur-lg">
+    <form action="https://formspree.io/f/your-form-id" method="POST" class="space-y-4">
+      <div>
+        <label for="name" class="block text-blue-900 font-medium mb-1">Name</label>
+        <input type="text" id="name" name="name" required
+          class="w-full border border-blue-200 rounded-lg px-3 py-2 bg-white/80
+            focus:outline-none focus:ring-2 focus:ring-cyan-400 transition" />
+      </div>
+      <div>
+        <label for="email" class="block text-blue-900 font-medium mb-1">Email</label>
+        <input type="email" id="email" name="email" required
+          class="w-full border border-blue-200 rounded-lg px-3 py-2 bg-white/80
+            focus:outline-none focus:ring-2 focus:ring-cyan-400 transition" />
+      </div>
+      <div>
+        <label for="message" class="block text-blue-900 font-medium mb-1">Message</label>
+        <textarea id="message" name="message" rows="4" required
+          class="w-full border border-blue-200 rounded-lg px-3 py-2 bg-white/80
+            focus:outline-none focus:ring-2 focus:ring-cyan-400 transition"></textarea>
+      </div>
+      <button type="submit"
+        class="w-full bg-gradient-to-r from-cyan-500 via-blue-500 to-blue-700 text-white text-lg py-2 rounded-lg font-bold shadow hover:brightness-110 transition">
+        Send Message
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER MODERN GLASS -->
+<footer class="w-full mt-8 bg-blue-100/70 backdrop-blur-lg border-t border-blue-300/30 shadow-xl">
+  <div class="max-w-7xl mx-auto px-6 py-10 grid grid-cols-1 md:grid-cols-3 gap-8 text-blue-900">
+
+    <div class="bg-white/80 rounded-xl shadow-md p-6 border border-blue-100/40">
+      <h2 class="font-bold text-2xl mb-3">Muhammad Dicky Afriza</h2>
+      <p class="mb-2 font-medium text-blue-800">Web Developer | Traveler | Kulinarisch</p>
+      <p class="text-blue-900">Kendal, Jawa Tengah</p>
+      <p class="mt-2">
+        Email: <a href="mailto:afrizadicky6@gmail.com" class="underline hover:text-blue-700 transition">dickyafrz@gmail.com</a>
+      </p>
+     <!-- Instagram -->
+     <div class="flex flex-row items-center gap-4 mt-4">
+<a href="http://instagram.com/dickyafrz" class="...">
+  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M7.75 2A5.75 5.75 0 002 7.75v8.5A5.75 5.75 0 007.75 22h8.5A5.75 5.75 0 0022 16.25v-8.5A5.75 5.75 0 0016.25 2h-8.5zm0 1.5h8.5A4.25 4.25 0 0120.5 7.75v8.5a4.25 4.25 0 01-4.25 4.25h-8.5A4.25 4.25 0 013.5 16.25v-8.5A4.25 4.25 0 017.75 3.5zm4.25 3a5.25 5.25 0 100 10.5 5.25 5.25 0 000-10.5zm0 1.5a3.75 3.75 0 110 7.5 3.75 3.75 0 010-7.5zm6 1.25a1 1 0 10-.002 2.002A1 1 0 0018 6.25z"/>
+  </svg>
+  
+</a>
+<!-- GitHub -->
+<a href="https://github.com/dickyafriza" class="...">
+  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M12 .297c-6.6 0-12 5.4-12 12 0 5.3 3.438 9.8 8.205 11.385.6.113.82-.26.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.332-1.757-1.332-1.757-1.089-.745.084-.729.084-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.834 2.809 1.304 3.495.998.108-.775.419-1.304.762-1.604-2.665-.3-5.466-1.334-5.466-5.933 0-1.31.467-2.382 1.236-3.221-.124-.302-.535-1.521.117-3.176 0 0 1.008-.323 3.3 1.23.957-.266 1.983-.399 3.005-.404 1.021.005 2.048.138 3.006.404 2.29-1.553 3.296-1.23 3.296-1.23.653 1.655.242 2.874.118 3.176.77.839 1.235 1.911 1.235 3.221 0 4.609-2.804 5.629-5.476 5.924.43.372.823 1.104.823 2.229v3.304c0 .32.218.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.6-5.4-12-12-12"/>
+  </svg>
+  
+</a>
+<!-- YouTube -->
+<a href="https://www.youtube.com/channel/UC7xRxaGHb1D309DKP31NS7w" class="...">
+  <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+    <path d="M21.8 8.001s-.2-1.399-.799-2.001c-.8-.9-1.7-.901-2.1-.951C15.2 4.938 12 4.938 12 4.938h-.021s-3.2 0-6.9.11c-.4.05-1.3.051-2.1.951C2.2 6.602 2 8.001 2 8.001A19.65 19.65 0 002 12a19.65 19.65 0 00.122 3.999s.2 1.399.8 2c.8.9 1.9.899 2.4.999C7.1 19.063 12 19.063 12 19.063s3.2 0 6.9-.109c.4-.05 1.3-.05 2.1-.95.6-.601.8-2 .8-2A19.65 19.65 0 0022 12a19.65 19.65 0 00-.2-4zm-12.4 7V9l6.2 3-6.2 3z"/>
+  </svg>
+</a>
+     </div>
+    </div>
+
+    <div>
+      <h3 class="font-semibold mb-3 text-blue-900">Menu</h3>
+      <ul class="space-y-2">
+        <li><a href="#about" class="hover:underline hover:text-blue-600">Profil</a></li>
+        <li><a href="#portfolio" class="hover:underline hover:text-blue-600">Portfolio</a></li>
+        <li><a href="#contact" class="hover:underline hover:text-blue-600">Contact</a></li>
+        <li><a href="#" class="hover:underline hover:text-blue-600">Blog</a></li>
+      </ul>
+    </div>
+    <div>
+      <h3 class="font-semibold mb-3 text-blue-900">Informasi</h3>
+      <ul class="space-y-2">
+        <li><a href="#" class="hover:underline hover:text-blue-600">Privacy Policy</a></li>
+        <li><a href="#" class="hover:underline hover:text-blue-600">Terms of Service</a></li>
+        <li><a href="#" class="hover:underline hover:text-blue-600">Newsletter</a></li>
+      </ul>
+      <p class="mt-8 text-sm text-blue-800">
+        &copy; <span id="year"></span> | Built with <span class="text-red-400">&#10084;</span> by
+        <a href="http://instagram.com/dickyafrz" class="hover:text-blue-600 underline">Muhammad Dicky Afriza</a>.
+      </p>
+    </div>
+  </div>
   <script>
-    
-// Update year in footer
-document.getElementById('year').textContent = new Date().getFullYear();
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
+</footer>
+
+
 </body>
 </html>
