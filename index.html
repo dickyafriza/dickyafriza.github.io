@@ -145,9 +145,18 @@
       </div>
       <div>
         <label for="email" class="block text-blue-900 font-medium mb-1">Email</label>
-        <input type="email" id="email" name="email" required
+        <input 
+          type="email" 
+          id="email" 
+          name="email" 
+          required
           class="w-full border border-blue-200 rounded-lg px-3 py-2 bg-white/80
-            focus:outline-none focus:ring-2 focus:ring-cyan-400 transition" />
+            focus:outline-none focus:ring-2 focus:ring-cyan-400 transition" 
+          placeholder="contoh: nama@gmail.com"
+        />
+        <p id="emailError" class="text-red-600 text-sm mt-1 hidden">
+          Harap masukkan alamat email yang valid.
+        </p>
       </div>
       <div>
         <label for="message" class="block text-blue-900 font-medium mb-1">Message</label>
@@ -221,7 +230,47 @@
     </div>
   </div>
   <script>
+  // Form submission dengan fetch API
+      const form = document.querySelector("form");
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const data = new FormData(form);
+    const response = await fetch(form.action, {
+      method: form.method,
+      body: data,
+      headers: { 'Accept': 'application/json' }
+    });
+
+    if (response.ok) {
+      alert("Pesan kamu sudah terkirim. Terima kasih!");
+      form.reset();
+    } else {
+      alert("Terjadi kesalahan saat mengirim. Coba lagi nanti ya.");
+    }
+  });
+    // Set tahun di footer secara otomatis
     document.getElementById('year').textContent = new Date().getFullYear();
+    //verifikasi email sederhana
+    const emailInput = document.getElementById('email');
+  const emailError = document.getElementById('emailError');
+
+  emailInput.addEventListener('input', function() {
+    // Regex sederhana untuk validasi format email
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+    if (emailInput.value === '') {
+      emailError.textContent = 'Email wajib diisi.';
+      emailError.classList.remove('hidden');
+      emailInput.classList.add('border-red-400');
+    } else if (!emailPattern.test(emailInput.value)) {
+      emailError.textContent = 'Format email tidak valid.';
+      emailError.classList.remove('hidden');
+      emailInput.classList.add('border-red-400');
+    } else {
+      emailError.classList.add('hidden');
+      emailInput.classList.remove('border-red-400');
+    }
+  });
   </script>
 </footer>
 
