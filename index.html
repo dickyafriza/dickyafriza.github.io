@@ -2,614 +2,191 @@
 <html lang="en" id="home">
 <head>
   <meta charset="utf-8" />
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dicky Afriza | Web3 Developer</title>
-  <meta name="description" content="Muhammad Dicky Afriza - Web3 Developer, Creative Technologist, and Digital Innovator">
-  
-  <!-- Tailwind CSS CDN -->
-  <script src="https://cdn.tailwindcss.com"></script>
-  <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          animation: {
-            'float': 'float 6s ease-in-out infinite',
-            'glow': 'glow 2s ease-in-out infinite alternate',
-            'gradient': 'gradient 8s ease infinite',
-            'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-            'spin-slow': 'spin 20s linear infinite',
-            'bounce-slow': 'bounce 3s infinite',
-          },
-          keyframes: {
-            float: {
-              '0%, 100%': { transform: 'translateY(0px)' },
-              '50%': { transform: 'translateY(-20px)' },
-            },
-            glow: {
-              '0%': { boxShadow: '0 0 20px rgba(139, 92, 246, 0.5)' },
-              '100%': { boxShadow: '0 0 40px rgba(236, 72, 153, 0.8)' },
-            },
-            gradient: {
-              '0%, 100%': { backgroundPosition: '0% 50%' },
-              '50%': { backgroundPosition: '100% 50%' },
-            }
-          },
-          colors: {
-            'web3-purple': '#8B5CF6',
-            'web3-pink': '#EC4899',
-            'web3-cyan': '#06B6D4',
-            'web3-dark': '#0A0A0F',
-            'web3-darker': '#050508',
-          }
-        }
-      }
-    }
-  </script>
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  
-  <style>
-    * { font-family: 'Inter', sans-serif; }
-    .font-space { font-family: 'Space Grotesk', sans-serif; }
-    
-    /* Animated Gradient Background */
-    .gradient-bg {
-      background: linear-gradient(-45deg, #0A0A0F, #1a0a2e, #16062a, #0d1445, #0A0A0F);
-      background-size: 400% 400%;
-      animation: gradient 15s ease infinite;
-    }
-    
-    /* Grid Pattern Overlay */
-    .grid-pattern {
-      background-image: 
-        linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px);
-      background-size: 50px 50px;
-    }
-    
-    /* Neon Glow Effects */
-    .neon-text {
-      text-shadow: 
-        0 0 10px rgba(139, 92, 246, 0.5),
-        0 0 20px rgba(139, 92, 246, 0.3),
-        0 0 40px rgba(139, 92, 246, 0.2);
-    }
-    
-    .neon-box {
-      box-shadow: 
-        0 0 20px rgba(139, 92, 246, 0.3),
-        inset 0 0 20px rgba(139, 92, 246, 0.1);
-    }
-    
-    .neon-border {
-      border: 1px solid rgba(139, 92, 246, 0.3);
-      box-shadow: 
-        0 0 15px rgba(139, 92, 246, 0.2),
-        inset 0 0 15px rgba(139, 92, 246, 0.05);
-    }
-    
-    /* Gradient Text */
-    .gradient-text {
-      background: linear-gradient(135deg, #8B5CF6, #EC4899, #06B6D4);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-    
-    /* Glass Card */
-    .glass-card {
-      background: rgba(255, 255, 255, 0.03);
-      backdrop-filter: blur(20px);
-      border: 1px solid rgba(139, 92, 246, 0.2);
-      transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-    }
-    
-    .glass-card:hover {
-      transform: translateY(-10px) scale(1.02);
-      border-color: rgba(236, 72, 153, 0.5);
-      box-shadow: 
-        0 20px 40px rgba(139, 92, 246, 0.3),
-        0 0 60px rgba(236, 72, 153, 0.2);
-    }
-    
-    /* Floating Orbs */
-    .orb {
-      position: absolute;
-      border-radius: 50%;
-      filter: blur(100px);
-      opacity: 0.5;
-      animation: float 8s ease-in-out infinite;
-    }
-    
-    /* Button Styles */
-    .btn-neon {
-      position: relative;
-      overflow: hidden;
-      background: linear-gradient(135deg, rgba(139, 92, 246, 0.2), rgba(236, 72, 153, 0.2));
-      border: 1px solid rgba(139, 92, 246, 0.5);
-      transition: all 0.3s ease;
-    }
-    
-    .btn-neon::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.5s ease;
-    }
-    
-    .btn-neon:hover::before {
-      left: 100%;
-    }
-    
-    .btn-neon:hover {
-      box-shadow: 
-        0 0 30px rgba(139, 92, 246, 0.5),
-        0 0 60px rgba(236, 72, 153, 0.3);
-      border-color: rgba(236, 72, 153, 0.8);
-      transform: translateY(-2px);
-    }
-    
-    /* Particles */
-    .particle {
-      position: absolute;
-      width: 4px;
-      height: 4px;
-      background: rgba(139, 92, 246, 0.6);
-      border-radius: 50%;
-      animation: float 10s ease-in-out infinite;
-    }
-    
-    /* Custom scrollbar */
-    ::-webkit-scrollbar {
-      width: 8px;
-    }
-    ::-webkit-scrollbar-track {
-      background: #0A0A0F;
-    }
-    ::-webkit-scrollbar-thumb {
-      background: linear-gradient(180deg, #8B5CF6, #EC4899);
-      border-radius: 4px;
-    }
-    
-    /* Portfolio Card Hover Effect */
-    .portfolio-card {
-      position: relative;
-      overflow: hidden;
-    }
-    
-    .portfolio-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(135deg, rgba(139, 92, 246, 0.3), rgba(236, 72, 153, 0.3));
-      opacity: 0;
-      transition: opacity 0.3s ease;
-    }
-    
-    .portfolio-card:hover::after {
-      opacity: 1;
-    }
-    
-    /* Input Focus Effects */
-    input:focus, textarea:focus {
-      box-shadow: 0 0 20px rgba(139, 92, 246, 0.3);
-    }
-    
-    /* Animated underline */
-    .nav-link {
-      position: relative;
-    }
-    .nav-link::after {
-      content: '';
-      position: absolute;
-      bottom: -4px;
-      left: 0;
-      width: 0;
-      height: 2px;
-      background: linear-gradient(90deg, #8B5CF6, #EC4899);
-      transition: width 0.3s ease;
-    }
-    .nav-link:hover::after {
-      width: 100%;
-    }
-    
-    /* Mesh gradient */
-    .mesh-gradient {
-      background: 
-        radial-gradient(at 40% 20%, rgba(139, 92, 246, 0.3) 0px, transparent 50%),
-        radial-gradient(at 80% 0%, rgba(236, 72, 153, 0.2) 0px, transparent 50%),
-        radial-gradient(at 0% 50%, rgba(6, 182, 212, 0.2) 0px, transparent 50%),
-        radial-gradient(at 80% 50%, rgba(139, 92, 246, 0.15) 0px, transparent 50%),
-        radial-gradient(at 0% 100%, rgba(236, 72, 153, 0.2) 0px, transparent 50%);
-    }
-  </style>
+  <title>Dicky Afriza | Web Developer</title>
+  <meta name="description" content="Muhammad Dicky Afriza — Web Developer, Creative Technologist based in Semarang, Indonesia.">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body class="gradient-bg text-white overflow-x-hidden">
-
-<!-- Floating Orbs Background -->
-<div class="fixed inset-0 pointer-events-none overflow-hidden">
-  <div class="orb w-96 h-96 bg-purple-600 top-0 left-0" style="animation-delay: 0s;"></div>
-  <div class="orb w-80 h-80 bg-pink-600 top-1/2 right-0" style="animation-delay: 2s;"></div>
-  <div class="orb w-72 h-72 bg-cyan-600 bottom-0 left-1/3" style="animation-delay: 4s;"></div>
-</div>
-
-<!-- Grid Pattern Overlay -->
-<div class="fixed inset-0 grid-pattern pointer-events-none"></div>
-
-<!-- Particles -->
-<div class="fixed inset-0 pointer-events-none">
-  <div class="particle" style="top: 10%; left: 20%; animation-delay: 0s;"></div>
-  <div class="particle" style="top: 20%; left: 80%; animation-delay: 2s;"></div>
-  <div class="particle" style="top: 60%; left: 10%; animation-delay: 4s;"></div>
-  <div class="particle" style="top: 70%; left: 70%; animation-delay: 6s;"></div>
-  <div class="particle" style="top: 40%; left: 50%; animation-delay: 8s;"></div>
-</div>
+<body data-theme="dark">
 
 <!-- HEADER -->
-<header class="fixed top-0 left-0 right-0 z-50 bg-black/20 backdrop-blur-xl border-b border-purple-500/20">
-  <nav class="max-w-7xl mx-auto flex items-center justify-between py-4 px-6">
-    <a href="#home" class="flex items-center gap-2 group">
-      <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center font-bold text-xl animate-pulse-slow">
-        D
-      </div>
-      <span class="font-space font-bold text-xl gradient-text">Dicky.web3</span>
+<header id="mainHeader">
+  <nav>
+    <a href="#home" class="logo">
+      <span class="logo-bracket">{</span> dicky <span class="logo-bracket">}</span>
     </a>
-    
-    <div class="hidden md:flex items-center gap-8">
-      <a href="#home" class="nav-link text-gray-300 hover:text-white transition">Home</a>
-      <a href="#about" class="nav-link text-gray-300 hover:text-white transition">About</a>
-      <a href="#portfolio" class="nav-link text-gray-300 hover:text-white transition">Portfolio</a>
-      <a href="#contact" class="btn-neon px-6 py-2 rounded-full text-white font-semibold">Contact</a>
+    <div class="nav-links">
+      <a href="#about" class="nav-link">about</a>
+      <a href="#portfolio" class="nav-link">work</a>
+      <a href="#contact" class="nav-link">contact</a>
+      <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
+        <svg class="icon-sun" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+        <svg class="icon-moon" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+      </button>
     </div>
-    
-    <!-- Mobile Menu Button -->
-    <button class="md:hidden text-white" onclick="document.getElementById('mobileMenu').classList.toggle('hidden')">
-      <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-      </svg>
+    <button class="mobile-menu-btn" onclick="document.getElementById('mobileMenu').classList.toggle('open')">
+      <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
     </button>
   </nav>
-  
-  <!-- Mobile Menu -->
-  <div id="mobileMenu" class="hidden md:hidden px-6 pb-4 bg-black/50 backdrop-blur-xl">
-    <a href="#home" class="block py-3 text-gray-300 hover:text-white border-b border-purple-500/20">Home</a>
-    <a href="#about" class="block py-3 text-gray-300 hover:text-white border-b border-purple-500/20">About</a>
-    <a href="#portfolio" class="block py-3 text-gray-300 hover:text-white border-b border-purple-500/20">Portfolio</a>
-    <a href="#contact" class="block py-3 text-gray-300 hover:text-white">Contact</a>
+  <div id="mobileMenu" class="mobile-menu">
+    <a href="#about" onclick="this.parentElement.classList.remove('open')">about</a>
+    <a href="#portfolio" onclick="this.parentElement.classList.remove('open')">work</a>
+    <a href="#contact" onclick="this.parentElement.classList.remove('open')">contact</a>
+    <button id="themeToggleMobile" class="theme-toggle" aria-label="Toggle theme">
+      <svg class="icon-sun" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
+      <svg class="icon-moon" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+    </button>
   </div>
 </header>
 
-<!-- HERO SECTION -->
-<section class="relative min-h-screen flex items-center justify-center pt-20 mesh-gradient">
-  <div class="text-center px-6 relative z-10">
-    <!-- Profile Image with Glow -->
-    <div class="relative inline-block mb-8">
-      <div class="absolute inset-0 rounded-full bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 blur-xl opacity-60 animate-pulse-slow"></div>
-      <img src="img/dicky.jpg" 
-           class="relative w-40 h-40 rounded-full object-cover border-4 border-purple-500/50 animate-float" 
-           alt="Muhammad Dicky Afriza" />
-      
-      <!-- Status Badge -->
-      <div class="absolute -bottom-2 -right-2 bg-green-500 px-3 py-1 rounded-full text-xs font-semibold flex items-center gap-1 animate-bounce-slow">
-        <span class="w-2 h-2 bg-white rounded-full animate-pulse"></span>
-        Available
+<!-- HERO -->
+<section class="hero" id="heroSection">
+  <div class="hero-content">
+    <div class="hero-left">
+      <p class="hero-greeting mono">// hello world</p>
+      <h1 class="hero-name">Muhammad Dicky<br><span class="accent">Afriza</span></h1>
+      <p class="hero-role mono">
+        <span class="accent">&gt;</span> web_developer
+        <span class="cursor">|</span>
+      </p>
+      <p class="hero-desc">Crafting clean, functional, and thoughtful digital experiences from Semarang, Indonesia.</p>
+      <div class="hero-actions">
+        <a href="#portfolio" class="btn-primary">View Projects</a>
+        <a href="#contact" class="btn-outline">Get in Touch</a>
+      </div>
+      <div class="hero-socials">
+        <a href="https://github.com/dickyafriza" target="_blank" aria-label="GitHub">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.6 0-12 5.4-12 12 0 5.3 3.438 9.8 8.205 11.385.6.113.82-.26.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.332-1.757-1.332-1.757-1.089-.745.084-.729.084-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.834 2.809 1.304 3.495.998.108-.775.419-1.304.762-1.604-2.665-.3-5.466-1.334-5.466-5.933 0-1.31.467-2.382 1.236-3.221-.124-.302-.535-1.521.117-3.176 0 0 1.008-.323 3.3 1.23.957-.266 1.983-.399 3.005-.404 1.021.005 2.048.138 3.006.404 2.29-1.553 3.296-1.23 3.296-1.23.653 1.655.242 2.874.118 3.176.77.839 1.235 1.911 1.235 3.221 0 4.609-2.804 5.629-5.476 5.924.43.372.823 1.104.823 2.229v3.304c0 .32.218.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.6-5.4-12-12-12"/></svg>
+        </a>
+        <a href="http://instagram.com/dickyafrz" target="_blank" aria-label="Instagram">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7.75 2A5.75 5.75 0 002 7.75v8.5A5.75 5.75 0 007.75 22h8.5A5.75 5.75 0 0022 16.25v-8.5A5.75 5.75 0 0016.25 2h-8.5zm0 1.5h8.5A4.25 4.25 0 0120.5 7.75v8.5a4.25 4.25 0 01-4.25 4.25h-8.5A4.25 4.25 0 013.5 16.25v-8.5A4.25 4.25 0 017.75 3.5zm4.25 3a5.25 5.25 0 100 10.5 5.25 5.25 0 000-10.5zm0 1.5a3.75 3.75 0 110 7.5 3.75 3.75 0 010-7.5zm6 1.25a1 1 0 10-.002 2.002A1 1 0 0018 6.25z"/></svg>
+        </a>
+        <a href="https://www.youtube.com/channel/UC7xRxaGHb1D309DKP31NS7w" target="_blank" aria-label="YouTube">
+          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M21.8 8.001s-.2-1.399-.799-2.001c-.8-.9-1.7-.901-2.1-.951C15.2 4.938 12 4.938 12 4.938h-.021s-3.2 0-6.9.11c-.4.05-1.3.051-2.1.951C2.2 6.602 2 8.001 2 8.001A19.65 19.65 0 002 12a19.65 19.65 0 00.122 3.999s.2 1.399.8 2c.8.9 1.9.899 2.4.999C7.1 19.063 12 19.063 12 19.063s3.2 0 6.9-.109c.4-.05 1.3-.05 2.1-.95.6-.601.8-2 .8-2A19.65 19.65 0 0022 12a19.65 19.65 0 00-.2-4zm-12.4 7V9l6.2 3-6.2 3z"/></svg>
+        </a>
       </div>
     </div>
-    
-    <!-- Name with Gradient -->
-    <h1 class="font-space text-5xl sm:text-7xl font-bold mb-4 neon-text">
-      <span class="gradient-text">Muhammad Dicky</span>
-      <br/>
-      <span class="text-white">Afriza</span>
-    </h1>
-    
-    <!-- Tagline -->
-    <p class="text-xl sm:text-2xl text-gray-400 mb-8 max-w-2xl mx-auto">
-      <span class="text-purple-400">Web Developer</span> · 
-      <span class="text-pink-400">Traveler</span> · 
-      <span class="text-cyan-400">Kulinarisch</span>
-    </p>
-    
-    <!-- Typing Effect Text -->
-    <p class="text-gray-500 mb-8 text-lg">
-      Building the future of the decentralized web ✨
-    </p>
-    
-    <!-- CTA Buttons -->
-    <div class="flex flex-wrap gap-4 justify-center">
-      <a href="#portfolio" class="btn-neon px-8 py-3 rounded-full font-semibold text-white flex items-center gap-2">
-        <span>View Projects</span>
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/>
-        </svg>
-      </a>
-      <a href="#contact" class="px-8 py-3 rounded-full font-semibold border border-gray-600 hover:border-purple-500 transition text-gray-300 hover:text-white">
-        Let's Talk
-      </a>
-    </div>
-    
-    <!-- Social Links -->
-    <div class="flex justify-center gap-6 mt-12">
-      <a href="http://instagram.com/dickyafrz" class="w-12 h-12 rounded-full bg-white/5 border border-purple-500/30 flex items-center justify-center hover:bg-purple-500/20 hover:border-pink-500 transition-all hover:scale-110">
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M7.75 2A5.75 5.75 0 002 7.75v8.5A5.75 5.75 0 007.75 22h8.5A5.75 5.75 0 0022 16.25v-8.5A5.75 5.75 0 0016.25 2h-8.5zm0 1.5h8.5A4.25 4.25 0 0120.5 7.75v8.5a4.25 4.25 0 01-4.25 4.25h-8.5A4.25 4.25 0 013.5 16.25v-8.5A4.25 4.25 0 017.75 3.5zm4.25 3a5.25 5.25 0 100 10.5 5.25 5.25 0 000-10.5zm0 1.5a3.75 3.75 0 110 7.5 3.75 3.75 0 010-7.5zm6 1.25a1 1 0 10-.002 2.002A1 1 0 0018 6.25z"/>
-        </svg>
-      </a>
-      <a href="https://github.com/dickyafriza" class="w-12 h-12 rounded-full bg-white/5 border border-purple-500/30 flex items-center justify-center hover:bg-purple-500/20 hover:border-pink-500 transition-all hover:scale-110">
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M12 .297c-6.6 0-12 5.4-12 12 0 5.3 3.438 9.8 8.205 11.385.6.113.82-.26.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.332-1.757-1.332-1.757-1.089-.745.084-.729.084-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.834 2.809 1.304 3.495.998.108-.775.419-1.304.762-1.604-2.665-.3-5.466-1.334-5.466-5.933 0-1.31.467-2.382 1.236-3.221-.124-.302-.535-1.521.117-3.176 0 0 1.008-.323 3.3 1.23.957-.266 1.983-.399 3.005-.404 1.021.005 2.048.138 3.006.404 2.29-1.553 3.296-1.23 3.296-1.23.653 1.655.242 2.874.118 3.176.77.839 1.235 1.911 1.235 3.221 0 4.609-2.804 5.629-5.476 5.924.43.372.823 1.104.823 2.229v3.304c0 .32.218.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.6-5.4-12-12-12"/>
-        </svg>
-      </a>
-      <a href="https://www.youtube.com/channel/UC7xRxaGHb1D309DKP31NS7w" class="w-12 h-12 rounded-full bg-white/5 border border-purple-500/30 flex items-center justify-center hover:bg-purple-500/20 hover:border-pink-500 transition-all hover:scale-110">
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M21.8 8.001s-.2-1.399-.799-2.001c-.8-.9-1.7-.901-2.1-.951C15.2 4.938 12 4.938 12 4.938h-.021s-3.2 0-6.9.11c-.4.05-1.3.051-2.1.951C2.2 6.602 2 8.001 2 8.001A19.65 19.65 0 002 12a19.65 19.65 0 00.122 3.999s.2 1.399.8 2c.8.9 1.9.899 2.4.999C7.1 19.063 12 19.063 12 19.063s3.2 0 6.9-.109c.4-.05 1.3-.05 2.1-.95.6-.601.8-2 .8-2A19.65 19.65 0 0022 12a19.65 19.65 0 00-.2-4zm-12.4 7V9l6.2 3-6.2 3z"/>
-        </svg>
-      </a>
-    </div>
-    
-    <!-- Scroll Indicator -->
-    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 animate-bounce">
-      <svg class="w-6 h-6 text-purple-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"/>
-      </svg>
-    </div>
-  </div>
-</section>
-
-<!-- ABOUT SECTION -->
-<section id="about" class="relative py-24 px-6">
-  <div class="max-w-6xl mx-auto">
-    <!-- Section Header -->
-    <div class="text-center mb-16">
-      <span class="text-purple-500 font-semibold text-sm uppercase tracking-widest">About Me</span>
-      <h2 class="font-space text-4xl sm:text-5xl font-bold mt-4 gradient-text">Who Am I?</h2>
-    </div>
-    
-    <div class="grid md:grid-cols-2 gap-8">
-      <!-- About Card -->
-      <div class="glass-card rounded-3xl p-8 relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-32 h-32 bg-purple-500/20 rounded-full blur-3xl"></div>
-        <div class="relative">
-          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center mb-6">
-            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/>
-            </svg>
-          </div>
-          <h3 class="text-2xl font-bold mb-4">About</h3>
-          <p class="text-gray-400 leading-relaxed">
-            I am <span class="text-purple-400 font-semibold">Muhammad Dicky Afriza</span>, born in Semarang. Currently studying Informatics Engineering at <span class="text-pink-400">Dian Nuswantoro University</span>, Semarang. Passionate about building innovative web solutions and exploring new technologies.
-          </p>
+    <div class="hero-right">
+      <div class="terminal-card">
+        <div class="terminal-header">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+          <span class="terminal-title mono">about.json</span>
         </div>
-      </div>
-      
-      <!-- Personal Card -->
-      <div class="glass-card rounded-3xl p-8 relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-32 h-32 bg-pink-500/20 rounded-full blur-3xl"></div>
-        <div class="relative">
-          <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-pink-500 to-cyan-500 flex items-center justify-center mb-6">
-            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-            </svg>
-          </div>
-          <h3 class="text-2xl font-bold mb-4">Personal</h3>
-          <p class="text-gray-400 leading-relaxed">
-            Despite a simple family background, my parents always encourage and motivate me. Outside of class, I often help friends or relatives troubleshoot computer and laptop problems. I believe in continuous learning and sharing knowledge with others.
-          </p>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Skills/Stats -->
-    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-12">
-      <div class="glass-card rounded-2xl p-6 text-center">
-        <div class="text-3xl font-bold gradient-text mb-2">9+</div>
-        <div class="text-gray-500 text-sm">Projects Completed</div>
-      </div>
-      <div class="glass-card rounded-2xl p-6 text-center">
-        <div class="text-3xl font-bold gradient-text mb-2">3+</div>
-        <div class="text-gray-500 text-sm">Years Experience</div>
-      </div>
-      <div class="glass-card rounded-2xl p-6 text-center">
-        <div class="text-3xl font-bold gradient-text mb-2">10+</div>
-        <div class="text-gray-500 text-sm">Happy Clients</div>
-      </div>
-      <div class="glass-card rounded-2xl p-6 text-center">
-        <div class="text-3xl font-bold gradient-text mb-2">∞</div>
-        <div class="text-gray-500 text-sm">Coffee Consumed</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PORTFOLIO SECTION -->
-<section id="portfolio" class="relative py-24 px-6">
-  <div class="max-w-7xl mx-auto">
-    <!-- Section Header -->
-    <div class="text-center mb-16">
-      <span class="text-purple-500 font-semibold text-sm uppercase tracking-widest">My Work</span>
-      <h2 class="font-space text-4xl sm:text-5xl font-bold mt-4 gradient-text">Featured Projects</h2>
-      <p class="text-gray-500 mt-4 max-w-2xl mx-auto">A collection of projects that showcase my skills in web development, design, and creative problem-solving.</p>
-    </div>
-    
-    <!-- Portfolio Grid -->
-    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Portfolio Item 1 -->
-      <div class="portfolio-card glass-card rounded-3xl overflow-hidden group">
-        <div class="relative">
-          <img src="img/portfolio/ibs-man-demak.png" alt="IBS MAN Demak" 
-               class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end">
-            <div class="p-6">
-              <h4 class="text-xl font-bold">IBS MAN Demak</h4>
-              <p class="text-gray-400 text-sm">Web Development</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Portfolio Item 2 -->
-      <div class="portfolio-card glass-card rounded-3xl overflow-hidden group">
-        <div class="relative">
-          <img src="img/portfolio/web (2).png" alt="Project 2" 
-               class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end">
-            <div class="p-6">
-              <h4 class="text-xl font-bold">Web Project</h4>
-              <p class="text-gray-400 text-sm">Frontend Development</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Portfolio Item 3 -->
-      <div class="portfolio-card glass-card rounded-3xl overflow-hidden group">
-        <div class="relative">
-          <img src="img/portfolio/web (3).png" alt="Project 3" 
-               class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end">
-            <div class="p-6">
-              <h4 class="text-xl font-bold">Creative Design</h4>
-              <p class="text-gray-400 text-sm">UI/UX Design</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Portfolio Item 4 -->
-      <div class="portfolio-card glass-card rounded-3xl overflow-hidden group">
-        <div class="relative">
-          <img src="img/portfolio/web (6).png" alt="Project 4" 
-               class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end">
-            <div class="p-6">
-              <h4 class="text-xl font-bold">Web Application</h4>
-              <p class="text-gray-400 text-sm">Full Stack</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Portfolio Item 5 -->
-      <div class="portfolio-card glass-card rounded-3xl overflow-hidden group">
-        <div class="relative">
-          <img src="img/portfolio/web (7).png" alt="Project 5" 
-               class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end">
-            <div class="p-6">
-              <h4 class="text-xl font-bold">Modern Website</h4>
-              <p class="text-gray-400 text-sm">Web Development</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Portfolio Item 6 -->
-      <div class="portfolio-card glass-card rounded-3xl overflow-hidden group">
-        <div class="relative">
-          <img src="img/portfolio/web (8).png" alt="Project 6" 
-               class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end">
-            <div class="p-6">
-              <h4 class="text-xl font-bold">Digital Platform</h4>
-              <p class="text-gray-400 text-sm">Web Development</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Portfolio Item 7 -->
-      <div class="portfolio-card glass-card rounded-3xl overflow-hidden group">
-        <div class="relative">
-          <img src="img/portfolio/hijau-semesta-maju.png" alt="Hijau Semesta Maju" 
-               class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end">
-            <div class="p-6">
-              <h4 class="text-xl font-bold">Hijau Semesta Maju</h4>
-              <p class="text-gray-400 text-sm">Corporate Website</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Portfolio Item 8 -->
-      <div class="portfolio-card glass-card rounded-3xl overflow-hidden group">
-        <div class="relative">
-          <img src="img/portfolio/aeroterra.png" alt="Aeroterra" 
-               class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end">
-            <div class="p-6">
-              <h4 class="text-xl font-bold">Aeroterra</h4>
-              <p class="text-gray-400 text-sm">Web Platform</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Portfolio Item 9 -->
-      <div class="portfolio-card glass-card rounded-3xl overflow-hidden group">
-        <div class="relative">
-          <img src="img/portfolio/klasifikasi-anomali-imk.png" alt="Klasifikasi Anomali" 
-               class="w-full h-56 object-cover transition-transform duration-500 group-hover:scale-110" />
-          <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity flex items-end">
-            <div class="p-6">
-              <h4 class="text-xl font-bold">Klasifikasi Anomali</h4>
-              <p class="text-gray-400 text-sm">AI/ML Project</p>
-            </div>
-          </div>
+        <div class="terminal-body mono">
+<pre>{
+  <span class="json-key">"name"</span>: <span class="json-val">"Dicky Afriza"</span>,
+  <span class="json-key">"role"</span>: <span class="json-val">"Web Developer"</span>,
+  <span class="json-key">"location"</span>: <span class="json-val">"Semarang, ID"</span>,
+  <span class="json-key">"education"</span>: <span class="json-val">"UDINUS"</span>,
+  <span class="json-key">"interests"</span>: [
+    <span class="json-val">"coding"</span>,
+    <span class="json-val">"traveling"</span>,
+    <span class="json-val">"culinary"</span>
+  ],
+  <span class="json-key">"available"</span>: <span class="json-bool">true</span>
+}</pre>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CONTACT SECTION -->
-<section id="contact" class="relative py-24 px-6">
-  <div class="max-w-4xl mx-auto">
-    <!-- Section Header -->
-    <div class="text-center mb-16">
-      <span class="text-purple-500 font-semibold text-sm uppercase tracking-widest">Get in Touch</span>
-      <h2 class="font-space text-4xl sm:text-5xl font-bold mt-4 gradient-text">Let's Work Together</h2>
-      <p class="text-gray-500 mt-4">Have a project in mind? Let's create something amazing together.</p>
+<!-- ABOUT -->
+<section id="about" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="mono section-label">// about</span>
+      <h2 class="section-title">A bit about me</h2>
     </div>
-    
-    <div class="glass-card rounded-3xl p-8 md:p-12 neon-border relative overflow-hidden">
-      <div class="absolute -top-20 -right-20 w-40 h-40 bg-purple-500/30 rounded-full blur-3xl"></div>
-      <div class="absolute -bottom-20 -left-20 w-40 h-40 bg-pink-500/30 rounded-full blur-3xl"></div>
-      
-      <form action="https://formspree.io/f/mpwoqwkp" method="POST" class="relative space-y-6">
-        <div class="grid md:grid-cols-2 gap-6">
-          <div>
-            <label for="name" class="block text-gray-400 text-sm font-medium mb-2">Your Name</label>
-            <input type="text" id="name" name="name" required
-              class="w-full bg-white/5 border border-purple-500/30 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition" 
-              placeholder="John Doe" />
+    <div class="about-grid">
+      <div class="about-card">
+        <div class="about-card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
+        </div>
+        <h3>Background</h3>
+        <p>I'm <strong>Muhammad Dicky Afriza</strong>, born in Semarang. Currently studying Informatics Engineering at <strong>Dian Nuswantoro University</strong>. Passionate about building innovative web solutions and exploring new technologies.</p>
+      </div>
+      <div class="about-card">
+        <div class="about-card-icon">
+          <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
+        </div>
+        <h3>What I Do</h3>
+        <p>I design and build websites — from landing pages to full-stack web applications. I care about clean code, good user experience, and making things that actually work well.</p>
+      </div>
+    </div>
+    <div class="stats-row">
+      <div class="stat-item">
+        <span class="stat-number mono">9+</span>
+        <span class="stat-label">Projects</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number mono">3+</span>
+        <span class="stat-label">Years Exp</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number mono">10+</span>
+        <span class="stat-label">Clients</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number mono">∞</span>
+        <span class="stat-label">Coffee</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio" class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="mono section-label">// work</span>
+      <h2 class="section-title">Selected Projects</h2>
+      <p class="section-desc">A collection of projects showcasing web development, design, and problem-solving.</p>
+    </div>
+    <div class="portfolio-grid">
+      <div class="portfolio-card"><div class="portfolio-img-wrap"><img src="img/portfolio/ibs-man-demak.png" alt="IBS MAN Demak" loading="lazy"/></div><div class="portfolio-info"><h4>IBS MAN Demak</h4><span class="mono tag">Web Development</span></div></div>
+      <div class="portfolio-card"><div class="portfolio-img-wrap"><img src="img/portfolio/web (2).png" alt="Web Project" loading="lazy"/></div><div class="portfolio-info"><h4>Web Project</h4><span class="mono tag">Frontend</span></div></div>
+      <div class="portfolio-card"><div class="portfolio-img-wrap"><img src="img/portfolio/web (3).png" alt="Creative Design" loading="lazy"/></div><div class="portfolio-info"><h4>Creative Design</h4><span class="mono tag">UI/UX</span></div></div>
+      <div class="portfolio-card"><div class="portfolio-img-wrap"><img src="img/portfolio/web (6).png" alt="Web Application" loading="lazy"/></div><div class="portfolio-info"><h4>Web Application</h4><span class="mono tag">Full Stack</span></div></div>
+      <div class="portfolio-card"><div class="portfolio-img-wrap"><img src="img/portfolio/web (7).png" alt="Modern Website" loading="lazy"/></div><div class="portfolio-info"><h4>Modern Website</h4><span class="mono tag">Web Development</span></div></div>
+      <div class="portfolio-card"><div class="portfolio-img-wrap"><img src="img/portfolio/web (8).png" alt="Digital Platform" loading="lazy"/></div><div class="portfolio-info"><h4>Digital Platform</h4><span class="mono tag">Web Development</span></div></div>
+      <div class="portfolio-card"><div class="portfolio-img-wrap"><img src="img/portfolio/hijau-semesta-maju.png" alt="Hijau Semesta Maju" loading="lazy"/></div><div class="portfolio-info"><h4>Hijau Semesta Maju</h4><span class="mono tag">Corporate</span></div></div>
+      <div class="portfolio-card"><div class="portfolio-img-wrap"><img src="img/portfolio/aeroterra.png" alt="Aeroterra" loading="lazy"/></div><div class="portfolio-info"><h4>Aeroterra</h4><span class="mono tag">Web Platform</span></div></div>
+      <div class="portfolio-card"><div class="portfolio-img-wrap"><img src="img/portfolio/klasifikasi-anomali-imk.png" alt="Klasifikasi Anomali" loading="lazy"/></div><div class="portfolio-info"><h4>Klasifikasi Anomali</h4><span class="mono tag">AI / ML</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="section">
+  <div class="container container-sm">
+    <div class="section-header">
+      <span class="mono section-label">// contact</span>
+      <h2 class="section-title">Let's work together</h2>
+      <p class="section-desc">Have a project in mind? Drop me a message.</p>
+    </div>
+    <div class="contact-card">
+      <form action="https://formspree.io/f/mpwoqwkp" method="POST" id="contactForm">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required placeholder="Your name" />
           </div>
-          <div>
-            <label for="email" class="block text-gray-400 text-sm font-medium mb-2">Your Email</label>
-            <input type="email" id="email" name="email" required
-              class="w-full bg-white/5 border border-purple-500/30 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition" 
-              placeholder="john@example.com" />
-            <p id="emailError" class="text-red-400 text-sm mt-1 hidden">Please enter a valid email address.</p>
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="you@example.com" />
           </div>
         </div>
-        <div>
-          <label for="message" class="block text-gray-400 text-sm font-medium mb-2">Your Message</label>
-          <textarea id="message" name="message" rows="5" required
-            class="w-full bg-white/5 border border-purple-500/30 rounded-xl px-4 py-3 text-white placeholder-gray-500 focus:outline-none focus:border-purple-500 transition resize-none"
-            placeholder="Tell me about your project..."></textarea>
+        <div class="form-group">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project..."></textarea>
         </div>
-        <button type="submit"
-          class="w-full btn-neon px-8 py-4 rounded-xl font-semibold text-white text-lg flex items-center justify-center gap-2 group">
-          <span>Send Message</span>
-          <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/>
-          </svg>
+        <button type="submit" class="btn-primary btn-full">
+          Send Message
+          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
         </button>
       </form>
     </div>
@@ -617,138 +194,55 @@
 </section>
 
 <!-- FOOTER -->
-<footer class="relative py-16 px-6 border-t border-purple-500/20 bg-black/30 backdrop-blur-xl">
-  <div class="max-w-7xl mx-auto">
-    <div class="grid md:grid-cols-4 gap-12">
-      <!-- Brand -->
-      <div class="md:col-span-2">
-        <div class="flex items-center gap-2 mb-4">
-          <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-purple-500 to-pink-500 flex items-center justify-center font-bold text-xl">
-            D
-          </div>
-          <span class="font-space font-bold text-xl gradient-text">Dicky.web3</span>
-        </div>
-        <p class="text-gray-500 mb-6 max-w-md">
-          Web Developer based in Kendal, Jawa Tengah. Passionate about creating beautiful, functional, and user-friendly websites.
-        </p>
-        
-        <!-- Social Links -->
-        <div class="flex gap-4">
-          <a href="http://instagram.com/dickyafrz" class="w-10 h-10 rounded-full bg-white/5 border border-purple-500/30 flex items-center justify-center hover:bg-purple-500/20 hover:border-pink-500 transition-all">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M7.75 2A5.75 5.75 0 002 7.75v8.5A5.75 5.75 0 007.75 22h8.5A5.75 5.75 0 0022 16.25v-8.5A5.75 5.75 0 0016.25 2h-8.5zm0 1.5h8.5A4.25 4.25 0 0120.5 7.75v8.5a4.25 4.25 0 01-4.25 4.25h-8.5A4.25 4.25 0 013.5 16.25v-8.5A4.25 4.25 0 017.75 3.5zm4.25 3a5.25 5.25 0 100 10.5 5.25 5.25 0 000-10.5zm0 1.5a3.75 3.75 0 110 7.5 3.75 3.75 0 010-7.5zm6 1.25a1 1 0 10-.002 2.002A1 1 0 0018 6.25z"/>
-            </svg>
-          </a>
-          <a href="https://github.com/dickyafriza" class="w-10 h-10 rounded-full bg-white/5 border border-purple-500/30 flex items-center justify-center hover:bg-purple-500/20 hover:border-pink-500 transition-all">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M12 .297c-6.6 0-12 5.4-12 12 0 5.3 3.438 9.8 8.205 11.385.6.113.82-.26.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.332-1.757-1.332-1.757-1.089-.745.084-.729.084-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.834 2.809 1.304 3.495.998.108-.775.419-1.304.762-1.604-2.665-.3-5.466-1.334-5.466-5.933 0-1.31.467-2.382 1.236-3.221-.124-.302-.535-1.521.117-3.176 0 0 1.008-.323 3.3 1.23.957-.266 1.983-.399 3.005-.404 1.021.005 2.048.138 3.006.404 2.29-1.553 3.296-1.23 3.296-1.23.653 1.655.242 2.874.118 3.176.77.839 1.235 1.911 1.235 3.221 0 4.609-2.804 5.629-5.476 5.924.43.372.823 1.104.823 2.229v3.304c0 .32.218.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.6-5.4-12-12-12"/>
-            </svg>
-          </a>
-          <a href="https://www.youtube.com/channel/UC7xRxaGHb1D309DKP31NS7w" class="w-10 h-10 rounded-full bg-white/5 border border-purple-500/30 flex items-center justify-center hover:bg-purple-500/20 hover:border-pink-500 transition-all">
-            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-              <path d="M21.8 8.001s-.2-1.399-.799-2.001c-.8-.9-1.7-.901-2.1-.951C15.2 4.938 12 4.938 12 4.938h-.021s-3.2 0-6.9.11c-.4.05-1.3.051-2.1.951C2.2 6.602 2 8.001 2 8.001A19.65 19.65 0 002 12a19.65 19.65 0 00.122 3.999s.2 1.399.8 2c.8.9 1.9.899 2.4.999C7.1 19.063 12 19.063 12 19.063s3.2 0 6.9-.109c.4-.05 1.3-.05 2.1-.95.6-.601.8-2 .8-2A19.65 19.65 0 0022 12a19.65 19.65 0 00-.2-4zm-12.4 7V9l6.2 3-6.2 3z"/>
-            </svg>
-          </a>
-        </div>
-      </div>
-      
-      <!-- Quick Links -->
-      <div>
-        <h3 class="font-semibold text-white mb-4">Quick Links</h3>
-        <ul class="space-y-3">
-          <li><a href="#about" class="text-gray-500 hover:text-purple-400 transition">About</a></li>
-          <li><a href="#portfolio" class="text-gray-500 hover:text-purple-400 transition">Portfolio</a></li>
-          <li><a href="#contact" class="text-gray-500 hover:text-purple-400 transition">Contact</a></li>
-          <li><a href="#" class="text-gray-500 hover:text-purple-400 transition">Blog</a></li>
-        </ul>
-      </div>
-      
-      <!-- Contact Info -->
-      <div>
-        <h3 class="font-semibold text-white mb-4">Contact</h3>
-        <ul class="space-y-3">
-          <li class="text-gray-500">Kendal, Jawa Tengah</li>
-          <li>
-            <a href="mailto:afrizadicky6@gmail.com" class="text-gray-500 hover:text-purple-400 transition">
-              afrizadicky6@gmail.com
-            </a>
-          </li>
-        </ul>
-      </div>
-    </div>
-    
-    <!-- Copyright -->
-    <div class="border-t border-purple-500/20 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-      <p class="text-gray-600 text-sm">
-        © <span id="year"></span> Muhammad Dicky Afriza. All rights reserved.
-      </p>
-      <p class="text-gray-600 text-sm flex items-center gap-2">
-        Built with <span class="text-pink-500">♥</span> and <span class="gradient-text font-semibold">Web3</span> vibes
-      </p>
-    </div>
+<footer>
+  <div class="container footer-content">
+    <p class="mono">© <span id="year"></span> dicky afriza</p>
+    <p class="footer-tagline">built with care <span class="accent">&&</span> code</p>
   </div>
 </footer>
 
 <script>
-  // Form submission with fetch API
-  const form = document.querySelector("form");
-  form.addEventListener("submit", async (e) => {
+  // Year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Form
+  document.getElementById('contactForm').addEventListener('submit', async (e) => {
     e.preventDefault();
-    const data = new FormData(form);
-    const response = await fetch(form.action, {
-      method: form.method,
-      body: data,
+    const form = e.target;
+    const res = await fetch(form.action, {
+      method: 'POST', body: new FormData(form),
       headers: { 'Accept': 'application/json' }
     });
-
-    if (response.ok) {
-      alert("Your message has been sent successfully. Thank you! ✨");
-      form.reset();
-    } else {
-      alert("Oops! Something went wrong. Please try again later.");
-    }
+    if (res.ok) { alert('Message sent! Thank you ✨'); form.reset(); }
+    else { alert('Something went wrong. Please try again.'); }
   });
-  
-  // Set year in footer
-  document.getElementById('year').textContent = new Date().getFullYear();
-  
-  // Email validation
-  const emailInput = document.getElementById('email');
-  const emailError = document.getElementById('emailError');
 
-  emailInput.addEventListener('input', function() {
-    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    if (emailInput.value === '') {
-      emailError.textContent = 'Email is required.';
-      emailError.classList.remove('hidden');
-      emailInput.classList.add('border-red-400');
-    } else if (!emailPattern.test(emailInput.value)) {
-      emailError.textContent = 'Invalid email format.';
-      emailError.classList.remove('hidden');
-      emailInput.classList.add('border-red-400');
-    } else {
-      emailError.classList.add('hidden');
-      emailInput.classList.remove('border-red-400');
-    }
-  });
-  
-  // Smooth scroll for anchor links
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
+  // Smooth scroll
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
       e.preventDefault();
-      const target = document.querySelector(this.getAttribute('href'));
-      if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
-        });
-        // Close mobile menu if open
-        document.getElementById('mobileMenu').classList.add('hidden');
-      }
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) t.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      document.getElementById('mobileMenu').classList.remove('open');
     });
   });
-</script>
 
+  // Theme toggle
+  function toggleTheme() {
+    const body = document.body;
+    const t = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+    body.setAttribute('data-theme', t);
+    localStorage.setItem('theme', t);
+  }
+  document.getElementById('themeToggle').addEventListener('click', toggleTheme);
+  document.getElementById('themeToggleMobile').addEventListener('click', toggleTheme);
+  (function(){ if (localStorage.getItem('theme') === 'light') document.body.setAttribute('data-theme','light'); })();
+
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('revealed'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.about-card, .portfolio-card, .contact-card, .stat-item').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>
