@@ -165,7 +165,8 @@
       this.sectionDecos = document.querySelectorAll('.section-deco');
       this.heroContent = document.querySelector('.hero-content');
       this.ticker = document.querySelector('.ticker-track');
-      this.waveSvgs = document.querySelectorAll('.wave-divider svg');
+      this.cubes3d = document.querySelectorAll('[data-3d-spin]');
+      this.gridPlanes = document.querySelectorAll('.perspective-grid-plane');
 
       this.scrollY = 0;
       this.ticking = false;
@@ -280,14 +281,24 @@
         this.heroContent.style.opacity = 1 - heroProgress * 0.8;
       }
 
-      // Animate wave dividers
-      this.waveSvgs.forEach((svg) => {
-        const rect = svg.getBoundingClientRect();
+      // Dynamic 3D rotation for transition cubes & grid planes
+      this.cubes3d.forEach((cube, index) => {
+        const rect = cube.getBoundingClientRect();
         const inView = rect.top < vh + 100 && rect.bottom > -100;
         if (inView) {
           const progress = (vh - rect.top) / (vh + rect.height);
-          const shift = progress * 30;
-          svg.style.transform = `translateX(${shift}px)`;
+          const rotX = 25 + progress * 70;
+          const rotY = 45 + progress * 160 + index * 45;
+          cube.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
+        }
+      });
+
+      this.gridPlanes.forEach((plane) => {
+        const rect = plane.getBoundingClientRect();
+        const inView = rect.top < vh + 100 && rect.bottom > -100;
+        if (inView) {
+          const progress = (vh - rect.top) / (vh + rect.height);
+          plane.style.backgroundPositionY = `${progress * 48}px`;
         }
       });
     }
@@ -330,7 +341,7 @@
         this.cursorDot.style.opacity = '0';
       });
 
-      const hovers = document.querySelectorAll('a, button, .portfolio-card, .about-card, .tilt-card, input, textarea, .skill-badge');
+      const hovers = document.querySelectorAll('a, button, .portfolio-card, .about-card, .tilt-card, input, textarea, .skill-badge, .transition-3d-badge');
       hovers.forEach((el) => {
         el.addEventListener('mouseenter', () => this.cursor.classList.add('cursor-hover'));
         el.addEventListener('mouseleave', () => this.cursor.classList.remove('cursor-hover'));
