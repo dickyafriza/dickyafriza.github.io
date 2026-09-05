@@ -74,9 +74,15 @@
   </div>
 </header>
 
-<!-- HERO -->
+<!-- ===================== HERO ===================== -->
 <section class="hero" id="heroSection">
   <canvas class="hero-canvas" id="particleCanvas"></canvas>
+
+  <!-- Hero section decorative elements -->
+  <div class="section-deco deco-circle-outline" data-deco-speed="0.8" data-deco-dir="up" data-deco-rotate="15"></div>
+  <div class="section-deco deco-cross" data-deco-speed="0.6" data-deco-dir="down"></div>
+  <div class="section-deco deco-ring" data-deco-speed="1" data-deco-dir="right" data-deco-rotate="0"></div>
+
   <div class="hero-content">
     <div class="hero-left">
       <p class="hero-greeting mono">// hello world</p>
@@ -131,13 +137,24 @@
   </div>
 </section>
 
-<hr class="section-divider" />
+<!-- Wave Divider: Hero → About -->
+<div class="wave-divider wave-1">
+  <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,60 C360,120 720,0 1080,60 C1260,90 1380,40 1440,60 L1440,120 L0,120 Z" fill="var(--bg)"/>
+    <path d="M0,80 C240,40 480,100 720,60 C960,20 1200,90 1440,70 L1440,120 L0,120 Z" fill="var(--bg)" opacity="0.5"/>
+  </svg>
+</div>
 
-<!-- ABOUT -->
+<!-- ===================== ABOUT ===================== -->
 <section id="about" class="section">
+  <!-- Per-section decorative parallax elements -->
+  <div class="section-deco deco-diamond" data-deco-speed="0.7" data-deco-dir="up" data-deco-rotate="20" style="top:10%; right:5%;"></div>
+  <div class="section-deco deco-dots" data-deco-speed="0.5" data-deco-dir="left" style="bottom:15%; left:3%;"></div>
+  <div class="section-deco deco-arc" data-deco-speed="0.9" data-deco-dir="down" style="top:40%; right:8%;"></div>
+
   <div class="container">
     <div class="section-header reveal">
-      <span class="mono section-label">// about</span>
+      <span class="mono section-label" data-scroll-speed="-0.05">// about</span>
       <h2 class="section-title">A bit about me</h2>
     </div>
     <div class="about-grid">
@@ -159,19 +176,19 @@
       </div>
     </div>
     <div class="stats-row">
-      <div class="stat-item reveal" data-delay="0">
+      <div class="stat-item reveal" data-delay="0" data-scroll-speed="-0.02">
         <span class="stat-number mono" data-count="9" data-suffix="+">0</span>
         <span class="stat-label">Projects</span>
       </div>
-      <div class="stat-item reveal" data-delay="100">
+      <div class="stat-item reveal" data-delay="100" data-scroll-speed="0.02">
         <span class="stat-number mono" data-count="3" data-suffix="+">0</span>
         <span class="stat-label">Years Exp</span>
       </div>
-      <div class="stat-item reveal" data-delay="200">
+      <div class="stat-item reveal" data-delay="200" data-scroll-speed="-0.02">
         <span class="stat-number mono" data-count="10" data-suffix="+">0</span>
         <span class="stat-label">Clients</span>
       </div>
-      <div class="stat-item reveal" data-delay="300">
+      <div class="stat-item reveal" data-delay="300" data-scroll-speed="0.02">
         <span class="stat-number mono">∞</span>
         <span class="stat-label">Coffee</span>
       </div>
@@ -179,17 +196,63 @@
   </div>
 </section>
 
-<hr class="section-divider" />
+<!-- Wave Divider: About → Ticker -->
+<div class="wave-divider wave-2">
+  <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,50 C180,0 360,80 540,40 C720,0 900,70 1080,30 C1260,-10 1380,60 1440,40 L1440,100 L0,100 Z" fill="var(--bg)" opacity="0.6"/>
+    <path d="M0,65 C320,20 640,80 960,45 C1120,28 1300,70 1440,55 L1440,100 L0,100 Z" fill="var(--bg)"/>
+  </svg>
+</div>
 
-<!-- SKILLS -->
+<!-- ===================== INFINITE TICKER ===================== -->
+<div class="ticker-section">
+  <div class="ticker-wrapper">
+    <div class="ticker-track">
+      <span class="ticker-item">HTML5</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item">CSS3</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item">JavaScript</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item">React</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item">Laravel</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item">PHP</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item">MySQL</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item">Git</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item">Figma</span>
+      <span class="ticker-sep">✦</span>
+      <span class="ticker-item">Python</span>
+      <span class="ticker-sep">✦</span>
+    </div>
+  </div>
+</div>
+
+<!-- Wave Divider: Ticker → Skills -->
+<div class="wave-divider wave-3">
+  <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,30 C480,90 960,10 1440,50 L1440,100 L0,100 Z" fill="var(--bg)" opacity="0.5"/>
+    <path d="M0,55 C240,20 720,80 1080,35 C1260,15 1380,55 1440,45 L1440,100 L0,100 Z" fill="var(--bg)"/>
+  </svg>
+</div>
+
+<!-- ===================== SKILLS ===================== -->
 <section id="skills" class="section">
+  <!-- Per-section decorative parallax elements -->
+  <div class="section-deco deco-triangle" data-deco-speed="0.6" data-deco-dir="up" data-deco-rotate="10" style="top:8%; left:5%;"></div>
+  <div class="section-deco deco-square-outline" data-deco-speed="0.8" data-deco-dir="right" data-deco-rotate="25" style="bottom:10%; right:4%;"></div>
+
   <div class="container">
     <div class="section-header reveal" style="text-align:center;">
       <span class="mono section-label">// skills</span>
       <h2 class="section-title">Tech Stack</h2>
       <p class="section-desc" style="margin-left:auto; margin-right:auto;">Technologies and tools I work with to bring ideas to life.</p>
     </div>
-    <div class="skills-container">
+    <div class="skills-container" data-scroll-scale="0.92">
       <div class="skill-badge reveal" data-delay="0">
         <span class="skill-icon">⚡</span> HTML5
       </div>
@@ -224,10 +287,22 @@
   </div>
 </section>
 
-<hr class="section-divider" />
+<!-- Wave Divider: Skills → Portfolio -->
+<div class="wave-divider wave-4">
+  <svg viewBox="0 0 1440 120" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,40 C240,100 480,0 720,60 C960,120 1200,20 1440,80 L1440,120 L0,120 Z" fill="var(--bg)" opacity="0.4"/>
+    <path d="M0,70 C360,20 720,90 1080,40 C1200,20 1380,70 1440,55 L1440,120 L0,120 Z" fill="var(--bg)" opacity="0.7"/>
+    <path d="M0,90 C480,50 960,100 1440,65 L1440,120 L0,120 Z" fill="var(--bg)"/>
+  </svg>
+</div>
 
-<!-- PORTFOLIO -->
+<!-- ===================== PORTFOLIO ===================== -->
 <section id="portfolio" class="section">
+  <!-- Per-section decorative parallax elements -->
+  <div class="section-deco deco-hexagon" data-deco-speed="0.7" data-deco-dir="down" data-deco-rotate="5" style="top:5%; right:6%;"></div>
+  <div class="section-deco deco-plus" data-deco-speed="0.5" data-deco-dir="up" style="bottom:8%; left:4%;"></div>
+  <div class="section-deco deco-circle-small" data-deco-speed="0.9" data-deco-dir="left" style="top:50%; right:3%;"></div>
+
   <div class="container">
     <div class="section-header reveal">
       <span class="mono section-label">// work</span>
@@ -284,10 +359,19 @@
   </div>
 </section>
 
-<hr class="section-divider" />
+<!-- Wave Divider: Portfolio → Contact -->
+<div class="wave-divider wave-5">
+  <svg viewBox="0 0 1440 100" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M0,50 C360,0 720,80 1080,30 C1260,8 1380,50 1440,40 L1440,100 L0,100 Z" fill="var(--bg)" opacity="0.5"/>
+    <path d="M0,70 C480,30 960,85 1440,55 L1440,100 L0,100 Z" fill="var(--bg)"/>
+  </svg>
+</div>
 
-<!-- CONTACT -->
+<!-- ===================== CONTACT ===================== -->
 <section id="contact" class="section">
+  <div class="section-deco deco-wave-line" data-deco-speed="0.6" data-deco-dir="right" style="top:15%; left:5%;"></div>
+  <div class="section-deco deco-circle-outline deco-sm" data-deco-speed="0.8" data-deco-dir="up" data-deco-rotate="0" style="bottom:10%; right:8%;"></div>
+
   <div class="container container-sm">
     <div class="section-header reveal" style="text-align:center;">
       <span class="mono section-label">// contact</span>

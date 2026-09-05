@@ -1,6 +1,6 @@
 /* ============================================================
-   MAIN.JS — Premium Interactive Engine
-   Particle System · Parallax · 3D Tilt · Custom Cursor · etc.
+   MAIN.JS — Premium Interactive Engine v2
+   Particle System · Scroll-Linked Parallax · 3D Tilt · etc.
    ============================================================ */
 
 (function () {
@@ -37,7 +37,7 @@
           vy: (Math.random() - 0.5) * 0.4,
           size: Math.random() * 2 + 0.5,
           opacity: Math.random() * 0.5 + 0.2,
-          hue: Math.random() > 0.5 ? 260 : 220, // purple or blue
+          hue: Math.random() > 0.5 ? 260 : 220,
         });
       }
     }
@@ -62,17 +62,14 @@
       this.ctx.clearRect(0, 0, this.width, this.height);
 
       this.particles.forEach((p, i) => {
-        // Move
         p.x += p.vx;
         p.y += p.vy;
 
-        // Wrap
         if (p.x < 0) p.x = this.width;
         if (p.x > this.width) p.x = 0;
         if (p.y < 0) p.y = this.height;
         if (p.y > this.height) p.y = 0;
 
-        // Mouse repulsion
         const dx = p.x - this.mouse.x;
         const dy = p.y - this.mouse.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
@@ -82,13 +79,11 @@
           p.y += (dy / dist) * force * 2;
         }
 
-        // Draw particle
         this.ctx.beginPath();
         this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
         this.ctx.fillStyle = `hsla(${p.hue}, 80%, 70%, ${p.opacity})`;
         this.ctx.fill();
 
-        // Connect nearby
         for (let j = i + 1; j < this.particles.length; j++) {
           const p2 = this.particles[j];
           const ddx = p.x - p2.x;
@@ -138,7 +133,6 @@
       el.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
       el.style.transition = 'transform 0.1s ease-out';
 
-      // Glare effect
       const glare = el.querySelector('.card-glare');
       if (glare) {
         const angle = Math.atan2(y - centerY, x - centerX) * (180 / Math.PI);
@@ -156,37 +150,145 @@
   }
 
   // ──────────────────────────────────────────────
-  // 3. PARALLAX ENGINE
+  // 3. SCROLL-LINKED PARALLAX ENGINE (Enhanced)
   // ──────────────────────────────────────────────
   class ParallaxEngine {
     constructor() {
-      this.layers = document.querySelectorAll('[data-parallax]');
       this.isMobile = window.matchMedia('(max-width: 768px)').matches;
-      if (!this.isMobile && this.layers.length) {
-        this.bind();
-      }
-    }
+      if (this.isMobile) return;
 
-    bind() {
-      let ticking = false;
-      window.addEventListener('scroll', () => {
-        if (!ticking) {
-          requestAnimationFrame(() => {
-            this.update();
-            ticking = false;
-          });
-          ticking = true;
-        }
-      });
+      this.layers = document.querySelectorAll('[data-parallax]');
+      this.scrollElements = document.querySelectorAll('[data-scroll-speed]');
+      this.scrollRotators = document.querySelectorAll('[data-scroll-rotate]');
+      this.scrollScalers = document.querySelectorAll('[data-scroll-scale]');
+      this.scrollOpacity = document.querySelectorAll('[data-scroll-opacity]');
+      this.sectionDecos = document.querySelectorAll('.section-deco');
+      this.heroContent = document.querySelector('.hero-content');
+      this.ticker = document.querySelector('.ticker-track');
+      this.waveSvgs = document.querySelectorAll('.wave-divider svg');
+
+      this.scrollY = 0;
+      this.ticking = false;
+
+      this.bind();
       this.update();
     }
 
+    bind() {
+      window.addEventListener('scroll', () => {
+        this.scrollY = window.pageYOffset;
+        if (!this.ticking) {
+          requestAnimationFrame(() => {
+            this.update();
+            this.ticking = false;
+          });
+          this.ticking = true;
+        }
+      });
+    }
+
     update() {
-      const scrollY = window.pageYOffset;
+      const scrollY = this.scrollY;
+      const vh = window.innerHeight;
+
+      // Basic parallax layers
       this.layers.forEach((layer) => {
         const speed = parseFloat(layer.dataset.parallax) || 0.1;
         const offset = scrollY * speed;
         layer.style.transform = `translate3d(0, ${offset}px, 0)`;
+      });
+
+      // Scroll speed elements (translate Y based on their position)
+      this.scrollElements.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        const inView = rect.top < vh && rect.bottom > 0;
+        if (inView) {
+          const speed = parseFloat(el.dataset.scrollSpeed) || 0.1;
+          const center = rect.top + rect.height / 2 - vh / 2;
+          const offset = center * speed;
+          el.style.transform = `translate3d(0, ${offset}px, 0)`;
+        }
+      });
+
+      // Scroll rotate elements
+      this.scrollRotators.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        const inView = rect.top < vh && rect.bottom > 0;
+        if (inView) {
+          const speed = parseFloat(el.dataset.scrollRotate) || 0.1;
+          const rotation = scrollY * speed;
+          el.style.transform = `rotate(${rotation}deg)`;
+        }
+      });
+
+      // Scroll scale elements
+      this.scrollScalers.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        const inView = rect.top < vh && rect.bottom > 0;
+        if (inView) {
+          const progress = 1 - (rect.top / vh);
+          const clampedProgress = Math.max(0, Math.min(1, progress));
+          const baseScale = parseFloat(el.dataset.scrollScale) || 0.8;
+          const scale = baseScale + (1 - baseScale) * clampedProgress;
+          el.style.transform = `scale(${scale})`;
+        }
+      });
+
+      // Scroll opacity
+      this.scrollOpacity.forEach((el) => {
+        const rect = el.getBoundingClientRect();
+        const inView = rect.top < vh && rect.bottom > 0;
+        if (inView) {
+          const progress = 1 - (rect.top / vh);
+          const clamped = Math.max(0, Math.min(1, progress));
+          el.style.opacity = clamped;
+        }
+      });
+
+      // Section decorative elements — each section's decos move relative to section scroll
+      this.sectionDecos.forEach((deco) => {
+        const section = deco.closest('.section') || deco.closest('.hero');
+        if (!section) return;
+        const sRect = section.getBoundingClientRect();
+        const inView = sRect.top < vh && sRect.bottom > 0;
+        if (inView) {
+          const sectionProgress = (vh - sRect.top) / (vh + sRect.height);
+          const speed = parseFloat(deco.dataset.decoSpeed) || 0.5;
+          const direction = deco.dataset.decoDir || 'up';
+          const maxMove = 80;
+          const move = (sectionProgress - 0.5) * maxMove * speed;
+
+          let transform = '';
+          if (direction === 'up') transform = `translate3d(0, ${-move}px, 0)`;
+          else if (direction === 'down') transform = `translate3d(0, ${move}px, 0)`;
+          else if (direction === 'left') transform = `translate3d(${-move}px, 0, 0)`;
+          else if (direction === 'right') transform = `translate3d(${move}px, 0, 0)`;
+
+          const baseRotate = parseFloat(deco.dataset.decoRotate) || 0;
+          if (baseRotate) {
+            transform += ` rotate(${baseRotate + sectionProgress * 60}deg)`;
+          }
+
+          deco.style.transform = transform;
+        }
+      });
+
+      // Hero content parallax on scroll (fades out and moves up)
+      if (this.heroContent) {
+        const heroProgress = Math.min(scrollY / vh, 1);
+        this.heroContent.style.transform = `translate3d(0, ${scrollY * 0.3}px, 0)`;
+        this.heroContent.style.opacity = 1 - heroProgress * 0.8;
+      }
+
+      // Animate wave dividers
+      this.waveSvgs.forEach((svg) => {
+        const rect = svg.getBoundingClientRect();
+        const inView = rect.top < vh + 100 && rect.bottom > -100;
+        if (inView) {
+          const progress = (vh - rect.top) / (vh + rect.height);
+          const shift = progress * 30;
+          svg.style.transform = `translateX(${shift}px)`;
+        }
       });
     }
   }
@@ -228,8 +330,7 @@
         this.cursorDot.style.opacity = '0';
       });
 
-      // Hover effects
-      const hovers = document.querySelectorAll('a, button, .portfolio-card, .about-card, .tilt-card, input, textarea');
+      const hovers = document.querySelectorAll('a, button, .portfolio-card, .about-card, .tilt-card, input, textarea, .skill-badge');
       hovers.forEach((el) => {
         el.addEventListener('mouseenter', () => this.cursor.classList.add('cursor-hover'));
         el.addEventListener('mouseleave', () => this.cursor.classList.remove('cursor-hover'));
@@ -305,10 +406,9 @@
 
       const update = (now) => {
         const progress = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3); // ease out cubic
+        const eased = 1 - Math.pow(1 - progress, 3);
         const current = Math.floor(eased * target);
         el.textContent = current + suffix;
-
         if (progress < 1) requestAnimationFrame(update);
       };
 
@@ -416,7 +516,6 @@
     constructor() {
       this.header = document.getElementById('mainHeader');
       if (!this.header) return;
-      let lastScroll = 0;
       window.addEventListener('scroll', () => {
         const currentScroll = window.pageYOffset;
         if (currentScroll > 80) {
@@ -424,13 +523,25 @@
         } else {
           this.header.classList.remove('header-scrolled');
         }
-        lastScroll = currentScroll;
       });
     }
   }
 
   // ──────────────────────────────────────────────
-  // 11. SMOOTH SCROLL
+  // 11. INFINITE TICKER (Marquee)
+  // ──────────────────────────────────────────────
+  class InfiniteTicker {
+    constructor() {
+      const track = document.querySelector('.ticker-track');
+      if (!track) return;
+      // Duplicate content for seamless loop
+      const content = track.innerHTML;
+      track.innerHTML = content + content;
+    }
+  }
+
+  // ──────────────────────────────────────────────
+  // 12. SMOOTH SCROLL
   // ──────────────────────────────────────────────
   function initSmoothScroll() {
     document.querySelectorAll('a[href^="#"]').forEach((a) => {
@@ -447,7 +558,7 @@
   }
 
   // ──────────────────────────────────────────────
-  // 12. THEME TOGGLE
+  // 13. THEME TOGGLE
   // ──────────────────────────────────────────────
   function initThemeToggle() {
     function toggleTheme() {
@@ -462,13 +573,12 @@
     if (btn) btn.addEventListener('click', toggleTheme);
     if (btnMobile) btnMobile.addEventListener('click', toggleTheme);
 
-    // Load saved theme
     const saved = localStorage.getItem('theme');
     if (saved) document.body.setAttribute('data-theme', saved);
   }
 
   // ──────────────────────────────────────────────
-  // 13. CONTACT FORM
+  // 14. CONTACT FORM
   // ──────────────────────────────────────────────
   function initContactForm() {
     const form = document.getElementById('contactForm');
@@ -509,17 +619,11 @@
     });
   }
 
-  // ──────────────────────────────────────────────
-  // 14. YEAR
-  // ──────────────────────────────────────────────
   function setYear() {
     const el = document.getElementById('year');
     if (el) el.textContent = new Date().getFullYear();
   }
 
-  // ──────────────────────────────────────────────
-  // 15. MOBILE MENU
-  // ──────────────────────────────────────────────
   function initMobileMenu() {
     const btn = document.querySelector('.mobile-menu-btn');
     const menu = document.getElementById('mobileMenu');
@@ -532,40 +636,25 @@
   // INITIALIZATION
   // ──────────────────────────────────────────────
   document.addEventListener('DOMContentLoaded', () => {
-    // Particle System
     const canvas = document.getElementById('particleCanvas');
     if (canvas) new ParticleSystem(canvas);
 
-    // 3D Tilt
     const tiltCards = document.querySelectorAll('.tilt-card');
     if (tiltCards.length) new TiltEffect(tiltCards);
 
-    // Parallax
     new ParallaxEngine();
-
-    // Custom Cursor
     new CustomCursor();
-
-    // Scroll Reveal
     new ScrollReveal();
-
-    // Counter Animation
     new CounterAnimation();
-
-    // Magnetic Buttons
     new MagneticButtons();
+    new InfiniteTicker();
 
-    // Typing Effect
     const typingEl = document.getElementById('typingText');
     new TypingEffect(typingEl);
 
-    // Scroll Progress
     new ScrollProgress();
-
-    // Header Scroll
     new HeaderScroll();
 
-    // Other
     initSmoothScroll();
     initThemeToggle();
     initContactForm();
