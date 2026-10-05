@@ -1,675 +1,387 @@
-/* ============================================================
-   MAIN.JS — Premium Interactive Engine v2
-   Particle System · Scroll-Linked Parallax · 3D Tilt · etc.
-   ============================================================ */
-
-(function () {
+/* =========================================================
+   Dicky Afriza — portfolio interactions
+   · split-reveal hero               · scroll-filled text
+   · custom cursor + magnetic btns   · work index with hover peek
+   · throwable toolbox (Matter.js)   · contact form (Formspree)
+   ========================================================= */
+(() => {
   'use strict';
 
-  // ──────────────────────────────────────────────
-  // 1. PARTICLE SYSTEM (Canvas)
-  // ──────────────────────────────────────────────
-  class ParticleSystem {
-    constructor(canvas) {
-      this.canvas = canvas;
-      this.ctx = canvas.getContext('2d');
-      this.particles = [];
-      this.mouse = { x: -1000, y: -1000 };
-      this.resize();
-      this.init();
-      this.bindEvents();
-      this.animate();
-    }
+  const $  = (s, c = document) => c.querySelector(s);
+  const $$ = (s, c = document) => Array.from(c.querySelectorAll(s));
+  const rand = (a, b) => a + Math.random() * (b - a);
+  const clamp = (v, a, b) => Math.min(b, Math.max(a, v));
+  const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const finePointer = matchMedia('(pointer: fine)').matches;
 
-    resize() {
-      this.width = this.canvas.width = this.canvas.offsetWidth;
-      this.height = this.canvas.height = this.canvas.offsetHeight;
-    }
+  /* ---------- tiny utilities ---------- */
+  $('#year').textContent = new Date().getFullYear();
 
-    init() {
-      const count = Math.min(Math.floor((this.width * this.height) / 12000), 120);
-      this.particles = [];
-      for (let i = 0; i < count; i++) {
-        this.particles.push({
-          x: Math.random() * this.width,
-          y: Math.random() * this.height,
-          vx: (Math.random() - 0.5) * 0.4,
-          vy: (Math.random() - 0.5) * 0.4,
-          size: Math.random() * 2 + 0.5,
-          opacity: Math.random() * 0.5 + 0.2,
-          hue: Math.random() > 0.5 ? 260 : 220,
+  const clockEl = $('#clock');
+  const tickClock = () => {
+    clockEl.textContent = new Date().toLocaleTimeString('en-GB', {
+      timeZone: 'Asia/Jakarta', hour: '2-digit', minute: '2-digit'
+    });
+  };
+  tickClock();
+  setInterval(tickClock, 15000);
+
+  requestAnimationFrame(() => requestAnimationFrame(() => document.body.classList.add('ready')));
+
+  /* ---------- mobile menu ---------- */
+  const menuBtn = $('#menuBtn');
+  const mobileMenu = $('#mobileMenu');
+  const setMenu = (open) => {
+    menuBtn.setAttribute('aria-expanded', String(open));
+    menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    mobileMenu.classList.toggle('open', open);
+    mobileMenu.setAttribute('aria-hidden', String(!open));
+    document.body.classList.toggle('menu-open', open);
+  };
+  menuBtn.addEventListener('click', () => setMenu(menuBtn.getAttribute('aria-expanded') !== 'true'));
+  $$('a', mobileMenu).forEach(a => a.addEventListener('click', () => setMenu(false)));
+  addEventListener('keydown', e => { if (e.key === 'Escape') setMenu(false); });
+
+  /* ---------- reveal on scroll ---------- */
+  const revealIO = new IntersectionObserver((entries) => {
+    entries.forEach(en => {
+      if (!en.isIntersecting) return;
+      const el = en.target;
+      const delay = parseInt(el.dataset.delay || '0', 10);
+      setTimeout(() => el.classList.add('in'), delay);
+      revealIO.unobserve(el);
+      if (el.classList.contains('num-card')) countUp($('[data-count]', el));
+    });
+  }, { threshold: 0.18, rootMargin: '0px 0px -6% 0px' });
+  $$('.rv, .lines').forEach(el => revealIO.observe(el));
+
+  function countUp(el) {
+    if (!el) return;
+    const target = parseInt(el.dataset.count, 10);
+    if (reduceMotion) { el.textContent = target; return; }
+    const dur = 1400, t0 = performance.now();
+    const step = (t) => {
+      const p = Math.min((t - t0) / dur, 1);
+      el.textContent = Math.round(target * (1 - Math.pow(1 - p, 4)));
+      if (p < 1) requestAnimationFrame(step);
+    };
+    requestAnimationFrame(step);
+  }
+
+  /* ---------- scroll-filled text ---------- */
+  function splitWords(node) {
+    Array.from(node.childNodes).forEach(n => {
+      if (n.nodeType === 3) {
+        const frag = document.createDocumentFragment();
+        n.textContent.split(/(\s+)/).forEach(t => {
+          if (!t) return;
+          if (/^\s+$/.test(t)) frag.appendChild(document.createTextNode(t));
+          else { const s = document.createElement('span'); s.className = 'w'; s.textContent = t; frag.appendChild(s); }
         });
+        n.replaceWith(frag);
+      } else if (n.nodeType === 1) splitWords(n);
+    });
+  }
+  const fills = $$('.fill').map(el => { splitWords(el); return { el, words: $$('.w', el), lit: 0 }; });
+  function updateFill() {
+    fills.forEach(f => {
+      const n = f.words.length;
+      let lit = n;
+      if (!reduceMotion) {
+        const r = f.el.getBoundingClientRect(), vh = innerHeight;
+        lit = Math.round(clamp((vh * 0.85 - r.top) / (r.height + vh * 0.25), 0, 1) * n);
       }
-    }
-
-    bindEvents() {
-      window.addEventListener('resize', () => {
-        this.resize();
-        this.init();
-      });
-      this.canvas.addEventListener('mousemove', (e) => {
-        const rect = this.canvas.getBoundingClientRect();
-        this.mouse.x = e.clientX - rect.left;
-        this.mouse.y = e.clientY - rect.top;
-      });
-      this.canvas.addEventListener('mouseleave', () => {
-        this.mouse.x = -1000;
-        this.mouse.y = -1000;
-      });
-    }
-
-    animate() {
-      this.ctx.clearRect(0, 0, this.width, this.height);
-
-      this.particles.forEach((p, i) => {
-        p.x += p.vx;
-        p.y += p.vy;
-
-        if (p.x < 0) p.x = this.width;
-        if (p.x > this.width) p.x = 0;
-        if (p.y < 0) p.y = this.height;
-        if (p.y > this.height) p.y = 0;
-
-        const dx = p.x - this.mouse.x;
-        const dy = p.y - this.mouse.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 120) {
-          const force = (120 - dist) / 120;
-          p.x += (dx / dist) * force * 2;
-          p.y += (dy / dist) * force * 2;
-        }
-
-        this.ctx.beginPath();
-        this.ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
-        this.ctx.fillStyle = `hsla(${p.hue}, 80%, 70%, ${p.opacity})`;
-        this.ctx.fill();
-
-        for (let j = i + 1; j < this.particles.length; j++) {
-          const p2 = this.particles[j];
-          const ddx = p.x - p2.x;
-          const ddy = p.y - p2.y;
-          const d = Math.sqrt(ddx * ddx + ddy * ddy);
-          if (d < 100) {
-            this.ctx.beginPath();
-            this.ctx.moveTo(p.x, p.y);
-            this.ctx.lineTo(p2.x, p2.y);
-            this.ctx.strokeStyle = `hsla(260, 60%, 60%, ${0.12 * (1 - d / 100)})`;
-            this.ctx.lineWidth = 0.5;
-            this.ctx.stroke();
-          }
-        }
-      });
-
-      requestAnimationFrame(() => this.animate());
-    }
-  }
-
-  // ──────────────────────────────────────────────
-  // 2. 3D TILT EFFECT
-  // ──────────────────────────────────────────────
-  class TiltEffect {
-    constructor(elements) {
-      this.elements = elements;
-      this.isMobile = window.matchMedia('(max-width: 768px)').matches;
-      if (!this.isMobile) this.bind();
-    }
-
-    bind() {
-      this.elements.forEach((el) => {
-        el.addEventListener('mousemove', (e) => this.onMove(e, el));
-        el.addEventListener('mouseleave', (e) => this.onLeave(e, el));
-      });
-    }
-
-    onMove(e, el) {
-      const rect = el.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-      const rotateX = ((y - centerY) / centerY) * -8;
-      const rotateY = ((x - centerX) / centerX) * 8;
-
-      el.style.transform = `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
-      el.style.transition = 'transform 0.1s ease-out';
-
-      const glare = el.querySelector('.card-glare');
-      if (glare) {
-        const angle = Math.atan2(y - centerY, x - centerX) * (180 / Math.PI);
-        glare.style.background = `linear-gradient(${angle + 180}deg, rgba(167,139,250,0.12) 0%, transparent 60%)`;
-        glare.style.opacity = '1';
-      }
-    }
-
-    onLeave(e, el) {
-      el.style.transform = 'perspective(800px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
-      el.style.transition = 'transform 0.5s cubic-bezier(0.4, 0, 0.2, 1)';
-      const glare = el.querySelector('.card-glare');
-      if (glare) glare.style.opacity = '0';
-    }
-  }
-
-  // ──────────────────────────────────────────────
-  // 3. SCROLL-LINKED PARALLAX ENGINE (Enhanced)
-  // ──────────────────────────────────────────────
-  class ParallaxEngine {
-    constructor() {
-      this.isMobile = window.matchMedia('(max-width: 768px)').matches;
-      if (this.isMobile) return;
-
-      this.layers = document.querySelectorAll('[data-parallax]');
-      this.scrollElements = document.querySelectorAll('[data-scroll-speed]');
-      this.scrollRotators = document.querySelectorAll('[data-scroll-rotate]');
-      this.scrollScalers = document.querySelectorAll('[data-scroll-scale]');
-      this.scrollOpacity = document.querySelectorAll('[data-scroll-opacity]');
-      this.sectionDecos = document.querySelectorAll('.section-deco');
-      this.heroContent = document.querySelector('.hero-content');
-      this.ticker = document.querySelector('.ticker-track');
-      this.cubes3d = document.querySelectorAll('[data-3d-spin]');
-      this.gridPlanes = document.querySelectorAll('.perspective-grid-plane');
-
-      this.scrollY = 0;
-      this.ticking = false;
-
-      this.bind();
-      this.update();
-    }
-
-    bind() {
-      window.addEventListener('scroll', () => {
-        this.scrollY = window.pageYOffset;
-        if (!this.ticking) {
-          requestAnimationFrame(() => {
-            this.update();
-            this.ticking = false;
-          });
-          this.ticking = true;
-        }
-      });
-    }
-
-    update() {
-      const scrollY = this.scrollY;
-      const vh = window.innerHeight;
-
-      // Basic parallax layers
-      this.layers.forEach((layer) => {
-        const speed = parseFloat(layer.dataset.parallax) || 0.1;
-        const offset = scrollY * speed;
-        layer.style.transform = `translate3d(0, ${offset}px, 0)`;
-      });
-
-      // Scroll speed elements (translate Y based on their position)
-      this.scrollElements.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        const inView = rect.top < vh && rect.bottom > 0;
-        if (inView) {
-          const speed = parseFloat(el.dataset.scrollSpeed) || 0.1;
-          const center = rect.top + rect.height / 2 - vh / 2;
-          const offset = center * speed;
-          el.style.transform = `translate3d(0, ${offset}px, 0)`;
-        }
-      });
-
-      // Scroll rotate elements
-      this.scrollRotators.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        const inView = rect.top < vh && rect.bottom > 0;
-        if (inView) {
-          const speed = parseFloat(el.dataset.scrollRotate) || 0.1;
-          const rotation = scrollY * speed;
-          el.style.transform = `rotate(${rotation}deg)`;
-        }
-      });
-
-      // Scroll scale elements
-      this.scrollScalers.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        const inView = rect.top < vh && rect.bottom > 0;
-        if (inView) {
-          const progress = 1 - (rect.top / vh);
-          const clampedProgress = Math.max(0, Math.min(1, progress));
-          const baseScale = parseFloat(el.dataset.scrollScale) || 0.8;
-          const scale = baseScale + (1 - baseScale) * clampedProgress;
-          el.style.transform = `scale(${scale})`;
-        }
-      });
-
-      // Scroll opacity
-      this.scrollOpacity.forEach((el) => {
-        const rect = el.getBoundingClientRect();
-        const inView = rect.top < vh && rect.bottom > 0;
-        if (inView) {
-          const progress = 1 - (rect.top / vh);
-          const clamped = Math.max(0, Math.min(1, progress));
-          el.style.opacity = clamped;
-        }
-      });
-
-      // Section decorative elements — each section's decos move relative to section scroll
-      this.sectionDecos.forEach((deco) => {
-        const section = deco.closest('.section') || deco.closest('.hero');
-        if (!section) return;
-        const sRect = section.getBoundingClientRect();
-        const inView = sRect.top < vh && sRect.bottom > 0;
-        if (inView) {
-          const sectionProgress = (vh - sRect.top) / (vh + sRect.height);
-          const speed = parseFloat(deco.dataset.decoSpeed) || 0.5;
-          const direction = deco.dataset.decoDir || 'up';
-          const maxMove = 80;
-          const move = (sectionProgress - 0.5) * maxMove * speed;
-
-          let transform = '';
-          if (direction === 'up') transform = `translate3d(0, ${-move}px, 0)`;
-          else if (direction === 'down') transform = `translate3d(0, ${move}px, 0)`;
-          else if (direction === 'left') transform = `translate3d(${-move}px, 0, 0)`;
-          else if (direction === 'right') transform = `translate3d(${move}px, 0, 0)`;
-
-          const baseRotate = parseFloat(deco.dataset.decoRotate) || 0;
-          if (baseRotate) {
-            transform += ` rotate(${baseRotate + sectionProgress * 60}deg)`;
-          }
-
-          deco.style.transform = transform;
-        }
-      });
-
-      // Hero content parallax on scroll (fades out and moves up)
-      if (this.heroContent) {
-        const heroProgress = Math.min(scrollY / vh, 1);
-        this.heroContent.style.transform = `translate3d(0, ${scrollY * 0.3}px, 0)`;
-        this.heroContent.style.opacity = 1 - heroProgress * 0.8;
-      }
-
-      // Dynamic 3D rotation for transition cubes & grid planes
-      this.cubes3d.forEach((cube, index) => {
-        const rect = cube.getBoundingClientRect();
-        const inView = rect.top < vh + 100 && rect.bottom > -100;
-        if (inView) {
-          const progress = (vh - rect.top) / (vh + rect.height);
-          const rotX = 25 + progress * 70;
-          const rotY = 45 + progress * 160 + index * 45;
-          cube.style.transform = `rotateX(${rotX}deg) rotateY(${rotY}deg)`;
-        }
-      });
-
-      this.gridPlanes.forEach((plane) => {
-        const rect = plane.getBoundingClientRect();
-        const inView = rect.top < vh + 100 && rect.bottom > -100;
-        if (inView) {
-          const progress = (vh - rect.top) / (vh + rect.height);
-          plane.style.backgroundPositionY = `${progress * 48}px`;
-        }
-      });
-    }
-  }
-
-  // ──────────────────────────────────────────────
-  // 4. CUSTOM CURSOR
-  // ──────────────────────────────────────────────
-  class CustomCursor {
-    constructor() {
-      this.isMobile = window.matchMedia('(max-width: 768px)').matches;
-      if (this.isMobile) return;
-
-      this.cursor = document.getElementById('customCursor');
-      this.cursorDot = document.getElementById('customCursorDot');
-      if (!this.cursor || !this.cursorDot) return;
-
-      this.pos = { x: 0, y: 0 };
-      this.target = { x: 0, y: 0 };
-      this.visible = false;
-
-      this.bind();
-      this.animate();
-    }
-
-    bind() {
-      document.addEventListener('mousemove', (e) => {
-        this.target.x = e.clientX;
-        this.target.y = e.clientY;
-        if (!this.visible) {
-          this.visible = true;
-          this.cursor.style.opacity = '1';
-          this.cursorDot.style.opacity = '1';
-        }
-      });
-
-      document.addEventListener('mouseleave', () => {
-        this.visible = false;
-        this.cursor.style.opacity = '0';
-        this.cursorDot.style.opacity = '0';
-      });
-
-      const hovers = document.querySelectorAll('a, button, .portfolio-card, .about-card, .tilt-card, input, textarea, .skill-badge, .transition-3d-badge');
-      hovers.forEach((el) => {
-        el.addEventListener('mouseenter', () => this.cursor.classList.add('cursor-hover'));
-        el.addEventListener('mouseleave', () => this.cursor.classList.remove('cursor-hover'));
-      });
-    }
-
-    animate() {
-      this.pos.x += (this.target.x - this.pos.x) * 0.12;
-      this.pos.y += (this.target.y - this.pos.y) * 0.12;
-
-      this.cursor.style.transform = `translate(${this.pos.x - 16}px, ${this.pos.y - 16}px)`;
-      this.cursorDot.style.transform = `translate(${this.target.x - 3}px, ${this.target.y - 3}px)`;
-
-      requestAnimationFrame(() => this.animate());
-    }
-  }
-
-  // ──────────────────────────────────────────────
-  // 5. SCROLL REVEAL with Stagger
-  // ──────────────────────────────────────────────
-  class ScrollReveal {
-    constructor() {
-      this.elements = document.querySelectorAll('.reveal');
-      if (!this.elements.length) return;
-
-      this.observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              const delay = entry.target.dataset.delay || 0;
-              setTimeout(() => {
-                entry.target.classList.add('revealed');
-              }, delay);
-              this.observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.1, rootMargin: '0px 0px -40px 0px' }
-      );
-
-      this.elements.forEach((el) => this.observer.observe(el));
-    }
-  }
-
-  // ──────────────────────────────────────────────
-  // 6. COUNTER ANIMATION
-  // ──────────────────────────────────────────────
-  class CounterAnimation {
-    constructor() {
-      this.counters = document.querySelectorAll('[data-count]');
-      if (!this.counters.length) return;
-
-      this.observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              this.animateCounter(entry.target);
-              this.observer.unobserve(entry.target);
-            }
-          });
-        },
-        { threshold: 0.5 }
-      );
-
-      this.counters.forEach((el) => this.observer.observe(el));
-    }
-
-    animateCounter(el) {
-      const target = parseInt(el.dataset.count);
-      const suffix = el.dataset.suffix || '';
-      const duration = 2000;
-      const start = performance.now();
-
-      const update = (now) => {
-        const progress = Math.min((now - start) / duration, 1);
-        const eased = 1 - Math.pow(1 - progress, 3);
-        const current = Math.floor(eased * target);
-        el.textContent = current + suffix;
-        if (progress < 1) requestAnimationFrame(update);
-      };
-
-      requestAnimationFrame(update);
-    }
-  }
-
-  // ──────────────────────────────────────────────
-  // 7. MAGNETIC BUTTONS
-  // ──────────────────────────────────────────────
-  class MagneticButtons {
-    constructor() {
-      this.buttons = document.querySelectorAll('.magnetic');
-      this.isMobile = window.matchMedia('(max-width: 768px)').matches;
-      if (!this.isMobile) this.bind();
-    }
-
-    bind() {
-      this.buttons.forEach((btn) => {
-        btn.addEventListener('mousemove', (e) => {
-          const rect = btn.getBoundingClientRect();
-          const x = e.clientX - rect.left - rect.width / 2;
-          const y = e.clientY - rect.top - rect.height / 2;
-          btn.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
-        });
-
-        btn.addEventListener('mouseleave', () => {
-          btn.style.transform = 'translate(0, 0)';
-          btn.style.transition = 'transform 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
-        });
-
-        btn.addEventListener('mouseenter', () => {
-          btn.style.transition = 'transform 0.1s ease-out';
-        });
-      });
-    }
-  }
-
-  // ──────────────────────────────────────────────
-  // 8. TYPING EFFECT
-  // ──────────────────────────────────────────────
-  class TypingEffect {
-    constructor(el) {
-      if (!el) return;
-      this.el = el;
-      this.words = ['web_developer', 'creative_coder', 'problem_solver', 'tech_enthusiast'];
-      this.wordIndex = 0;
-      this.charIndex = 0;
-      this.isDeleting = false;
-      this.type();
-    }
-
-    type() {
-      const current = this.words[this.wordIndex];
-      if (this.isDeleting) {
-        this.charIndex--;
-      } else {
-        this.charIndex++;
-      }
-
-      this.el.textContent = current.substring(0, this.charIndex);
-
-      let speed = this.isDeleting ? 40 : 80;
-
-      if (!this.isDeleting && this.charIndex === current.length) {
-        speed = 2000;
-        this.isDeleting = true;
-      } else if (this.isDeleting && this.charIndex === 0) {
-        this.isDeleting = false;
-        this.wordIndex = (this.wordIndex + 1) % this.words.length;
-        speed = 500;
-      }
-
-      setTimeout(() => this.type(), speed);
-    }
-  }
-
-  // ──────────────────────────────────────────────
-  // 9. SCROLL PROGRESS BAR
-  // ──────────────────────────────────────────────
-  class ScrollProgress {
-    constructor() {
-      this.bar = document.getElementById('scrollProgress');
-      if (!this.bar) return;
-      let ticking = false;
-      window.addEventListener('scroll', () => {
-        if (!ticking) {
-          requestAnimationFrame(() => {
-            const scrollTop = window.pageYOffset;
-            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-            const progress = (scrollTop / docHeight) * 100;
-            this.bar.style.width = `${progress}%`;
-            ticking = false;
-          });
-          ticking = true;
-        }
-      });
-    }
-  }
-
-  // ──────────────────────────────────────────────
-  // 10. HEADER SCROLL BEHAVIOR
-  // ──────────────────────────────────────────────
-  class HeaderScroll {
-    constructor() {
-      this.header = document.getElementById('mainHeader');
-      if (!this.header) return;
-      window.addEventListener('scroll', () => {
-        const currentScroll = window.pageYOffset;
-        if (currentScroll > 80) {
-          this.header.classList.add('header-scrolled');
-        } else {
-          this.header.classList.remove('header-scrolled');
-        }
-      });
-    }
-  }
-
-  // ──────────────────────────────────────────────
-  // 11. INFINITE TICKER (Marquee)
-  // ──────────────────────────────────────────────
-  class InfiniteTicker {
-    constructor() {
-      const track = document.querySelector('.ticker-track');
-      if (!track) return;
-      // Duplicate content for seamless loop
-      const content = track.innerHTML;
-      track.innerHTML = content + content;
-    }
-  }
-
-  // ──────────────────────────────────────────────
-  // 12. SMOOTH SCROLL
-  // ──────────────────────────────────────────────
-  function initSmoothScroll() {
-    document.querySelectorAll('a[href^="#"]').forEach((a) => {
-      a.addEventListener('click', (e) => {
-        e.preventDefault();
-        const target = document.querySelector(a.getAttribute('href'));
-        if (target) {
-          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-        }
-        const mobileMenu = document.getElementById('mobileMenu');
-        if (mobileMenu) mobileMenu.classList.remove('open');
-      });
+      if (lit === f.lit) return;
+      f.words.forEach((w, i) => w.classList.toggle('on', i < lit));
+      f.lit = lit;
     });
   }
 
-  // ──────────────────────────────────────────────
-  // 13. THEME TOGGLE
-  // ──────────────────────────────────────────────
-  function initThemeToggle() {
-    function toggleTheme() {
-      const body = document.body;
-      const t = body.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
-      body.setAttribute('data-theme', t);
-      localStorage.setItem('theme', t);
-    }
+  /* ---------- active section → header colour, counter, nav, progress ---------- */
+  const sections = $$('[data-section]');
+  const header = $('#siteHeader');
+  const counterNum = $('#counterNum');
+  const counterLabel = $('#counterLabel');
+  const themeMeta = $('meta[name="theme-color"]');
+  const navLinks = $$('[data-nav]');
+  const progress = $('#progress');
+  let activeSection = null;
 
-    const btn = document.getElementById('themeToggle');
-    const btnMobile = document.getElementById('themeToggleMobile');
-    if (btn) btn.addEventListener('click', toggleTheme);
-    if (btnMobile) btnMobile.addEventListener('click', toggleTheme);
-
-    const saved = localStorage.getItem('theme');
-    if (saved) document.body.setAttribute('data-theme', saved);
+  function setActive(sec) {
+    activeSection = sec;
+    header.style.color = sec.dataset.ink;
+    themeMeta.setAttribute('content', sec.dataset.bg);
+    counterNum.textContent = String(sections.indexOf(sec) + 1).padStart(2, '0');
+    counterLabel.textContent = sec.dataset.label;
+    navLinks.forEach(a => a.classList.toggle('active', a.dataset.nav === sec.id));
   }
 
-  // ──────────────────────────────────────────────
-  // 14. CONTACT FORM
-  // ──────────────────────────────────────────────
-  function initContactForm() {
-    const form = document.getElementById('contactForm');
-    if (!form) return;
+  let ticking = false;
+  function onScroll() {
+    ticking = false;
+    let act = sections[0];
+    sections.forEach(s => { if (s.getBoundingClientRect().top <= 70) act = s; });
+    if (act !== activeSection) setActive(act);
+    const max = document.documentElement.scrollHeight - innerHeight;
+    progress.style.transform = `scaleX(${max > 0 ? clamp(scrollY / max, 0, 1) : 0})`;
+    updateFill();
+  }
+  addEventListener('scroll', () => { if (!ticking) { ticking = true; requestAnimationFrame(onScroll); } }, { passive: true });
+  addEventListener('resize', onScroll);
+  onScroll();
 
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const btn = form.querySelector('button[type="submit"]');
-      const originalText = btn.innerHTML;
-      btn.innerHTML = '<span class="btn-loading"></span> Sending...';
-      btn.disabled = true;
+  /* ---------- hero: cursor reveals the second layer ---------- */
+  const hero = $('#hello');
+  const heroAlt = $('#heroAlt');
+  if (hero && heroAlt && !reduceMotion) {
+    const BASE_R = clamp(innerWidth * 0.14, 110, 190);
+    let x = innerWidth * 0.62, y = innerHeight * 0.5, tx = x, ty = y, r = 0, tr = 0, down = false;
+    const auto = !finePointer;
 
-      try {
-        const res = await fetch(form.action, {
-          method: 'POST',
-          body: new FormData(form),
-          headers: { Accept: 'application/json' },
-        });
-        if (res.ok) {
-          btn.innerHTML = '✨ Message Sent!';
-          btn.classList.add('btn-success');
-          form.reset();
-          setTimeout(() => {
-            btn.innerHTML = originalText;
-            btn.classList.remove('btn-success');
-            btn.disabled = false;
-          }, 3000);
-        } else {
-          throw new Error('Failed');
+    addEventListener('pointermove', (e) => {
+      if (auto || scrollY > innerHeight * 0.9) return;
+      const b = hero.getBoundingClientRect();
+      tx = e.clientX - b.left; ty = e.clientY - b.top;
+      tr = down ? BASE_R * 1.9 : BASE_R;
+    }, { passive: true });
+    addEventListener('pointerdown', () => { down = true; if (!auto) tr = BASE_R * 1.9; });
+    addEventListener('pointerup', () => { down = false; if (!auto && tr > 0) tr = BASE_R; });
+    document.addEventListener('mouseleave', () => { tr = 0; });
+
+    const loop = (t) => {
+      if (scrollY < innerHeight * 1.05) {
+        if (auto) {
+          const W = hero.clientWidth, H = hero.clientHeight;
+          tx = W * (0.5 + 0.28 * Math.sin(t * 0.0007));
+          ty = H * (0.5 + 0.2 * Math.sin(t * 0.001 + 1));
+          tr = Math.min(W, H) * (0.2 + 0.04 * Math.sin(t * 0.0013));
         }
-      } catch {
-        btn.innerHTML = '❌ Failed. Try again.';
-        setTimeout(() => {
-          btn.innerHTML = originalText;
-          btn.disabled = false;
-        }, 3000);
+        x += (tx - x) * 0.14; y += (ty - y) * 0.14; r += (tr - r) * 0.12;
+        heroAlt.style.setProperty('--hx', x.toFixed(1) + 'px');
+        heroAlt.style.setProperty('--hy', y.toFixed(1) + 'px');
+        heroAlt.style.setProperty('--hr', Math.max(r, 0).toFixed(1) + 'px');
       }
+      requestAnimationFrame(loop);
+    };
+    requestAnimationFrame(loop);
+  }
+
+  /* ---------- custom cursor + magnetic buttons ---------- */
+  if (finePointer && !reduceMotion) {
+    document.documentElement.classList.add('has-cursor');
+    const cur = $('#cursor'), label = $('.cursor-label', cur);
+    let cx = -100, cy = -100, mx = -100, my = -100;
+    addEventListener('pointermove', (e) => { mx = e.clientX; my = e.clientY; cur.classList.add('on'); }, { passive: true });
+    document.addEventListener('mouseleave', () => cur.classList.remove('on'));
+    const curLoop = () => {
+      cx += (mx - cx) * 0.2; cy += (my - cy) * 0.2;
+      cur.style.transform = `translate3d(${cx}px, ${cy}px, 0)`;
+      requestAnimationFrame(curLoop);
+    };
+    curLoop();
+
+    document.addEventListener('pointerover', (e) => {
+      const t = e.target.closest('[data-cursor], a, button, input, textarea, label');
+      cur.classList.remove('hover', 'big');
+      if (!t) return;
+      if (t.dataset.cursor) { label.textContent = t.dataset.cursor; cur.classList.add('big'); }
+      else cur.classList.add('hover');
+    });
+
+    $$('[data-magnet]').forEach(el => {
+      el.addEventListener('pointermove', (e) => {
+        const b = el.getBoundingClientRect();
+        const dx = e.clientX - (b.left + b.width / 2), dy = e.clientY - (b.top + b.height / 2);
+        el.style.transform = `translate(${dx * 0.3}px, ${dy * 0.3}px)`;
+      });
+      el.addEventListener('pointerleave', () => { el.style.transform = ''; });
     });
   }
 
-  function setYear() {
-    const el = document.getElementById('year');
-    if (el) el.textContent = new Date().getFullYear();
-  }
+  /* ---------- marquee: duplicate content for a seamless loop ---------- */
+  $$('.marquee-track').forEach(t => { t.innerHTML += t.innerHTML; });
 
-  function initMobileMenu() {
-    const btn = document.querySelector('.mobile-menu-btn');
-    const menu = document.getElementById('mobileMenu');
-    if (btn && menu) {
-      btn.addEventListener('click', () => menu.classList.toggle('open'));
+  /* ---------- work index: accordion + hover peek ---------- */
+  const accItems = $$('.acc-item');
+  const peek = $('#peek'), peekImg = $('img', peek);
+  let px = 0, py = 0, ppx = 0, ppy = 0, peekOn = false;
+
+  accItems.forEach(item => {
+    const btn = $('.acc-btn', item);
+    btn.addEventListener('click', () => {
+      const willOpen = !item.classList.contains('open');
+      accItems.forEach(i => {
+        i.classList.remove('open');
+        $('.acc-btn', i).setAttribute('aria-expanded', 'false');
+      });
+      if (willOpen) {
+        item.classList.add('open');
+        btn.setAttribute('aria-expanded', 'true');
+      }
+      peek.classList.remove('on'); peekOn = false;
+    });
+    if (finePointer) {
+      btn.addEventListener('pointerenter', () => {
+        if (item.classList.contains('open')) return;
+        peekImg.src = $('img', item).getAttribute('src');
+        peek.classList.add('on'); peekOn = true;
+      });
+      btn.addEventListener('pointerleave', () => { peek.classList.remove('on'); peekOn = false; });
     }
+  });
+  if (finePointer && !reduceMotion) {
+    addEventListener('pointermove', (e) => { px = e.clientX; py = e.clientY; }, { passive: true });
+    let sx = 0, sy = 0;
+    const peekLoop = () => {
+      sx += (px - sx) * 0.14; sy += (py - sy) * 0.14;
+      if (peekOn) {
+        const tilt = clamp((px - sx) * 0.08, -12, 12);
+        peek.style.transform = `translate3d(${sx + 28}px, ${sy - peek.offsetHeight / 2}px, 0) rotate(${tilt}deg)`;
+      }
+      requestAnimationFrame(peekLoop);
+    };
+    peekLoop();
   }
 
-  // ──────────────────────────────────────────────
-  // INITIALIZATION
-  // ──────────────────────────────────────────────
-  document.addEventListener('DOMContentLoaded', () => {
-    const canvas = document.getElementById('particleCanvas');
-    if (canvas) new ParticleSystem(canvas);
+  /* =======================================================
+     TOOLBOX — throwable pills (Matter.js)
+     ======================================================= */
+  function initToolbox() {
+    const stage = $('#toyStage');
+    if (!stage || !window.Matter) return;
+    const { Engine, Bodies, Body, Composite, Mouse, MouseConstraint } = Matter;
 
-    const tiltCards = document.querySelectorAll('.tilt-card');
-    if (tiltCards.length) new TiltEffect(tiltCards);
+    const pills = $$('.pill', stage);
+    let engine, mc, bodies = [], visible = false, zero = false, category = 'all';
+    let lastW = 0;
 
-    new ParallaxEngine();
-    new CustomCursor();
-    new ScrollReveal();
-    new CounterAnimation();
-    new MagneticButtons();
-    new InfiniteTicker();
+    function build() {
+      const w = stage.clientWidth, h = stage.clientHeight;
+      lastW = w;
+      if (mc && engine) Composite.clear(engine.world, false);
 
-    const typingEl = document.getElementById('typingText');
-    new TypingEffect(typingEl);
+      stage.classList.remove('no-physics');
+      pills.forEach(el => { el.style.display = ''; });   // make sure every pill can be measured
+      engine = Engine.create({ gravity: { x: 0, y: zero ? 0 : 1 } });
 
-    new ScrollProgress();
-    new HeaderScroll();
+      const t = 80;
+      Composite.add(engine.world, [
+        Bodies.rectangle(w / 2, h + t / 2, w + t * 2, t, { isStatic: true }),
+        Bodies.rectangle(w / 2, -h * 2, w + t * 2, t, { isStatic: true }),
+        Bodies.rectangle(-t / 2, h / 2 - h, t, h * 4, { isStatic: true }),
+        Bodies.rectangle(w + t / 2, h / 2 - h, t, h * 4, { isStatic: true })
+      ]);
 
-    initSmoothScroll();
-    initThemeToggle();
-    initContactForm();
-    initMobileMenu();
-    setYear();
+      bodies = pills.map(el => {
+        const pw = el.offsetWidth, ph = el.offsetHeight;
+        const b = Bodies.rectangle(
+          rand(pw, Math.max(pw + 1, w - pw)), rand(-h * 0.9, -30), pw, ph,
+          { chamfer: { radius: ph / 2 }, restitution: 0.55, friction: 0.08, frictionAir: 0.012, angle: rand(-1, 1) }
+        );
+        b.el = el; b.pw = pw; b.ph = ph; b.cat = el.dataset.cat; b.inWorld = false;
+        return b;
+      });
+      applyFilter(category, true);
+
+      const mouse = Mouse.create(stage);
+      mouse.element.removeEventListener('mousewheel', mouse.mousewheel);
+      mouse.element.removeEventListener('DOMMouseScroll', mouse.mousewheel);
+      mc = MouseConstraint.create(engine, { mouse, constraint: { stiffness: 0.2, render: { visible: false } } });
+      Composite.add(engine.world, mc);
+      sync();
+    }
+
+    function applyFilter(cat, initial) {
+      category = cat;
+      const w = stage.clientWidth;
+      bodies.forEach(b => {
+        const show = cat === 'all' || b.cat === cat;
+        if (show && !b.inWorld) {
+          if (!initial) {
+            Body.setPosition(b, { x: rand(b.pw, Math.max(b.pw + 1, w - b.pw)), y: -40 });
+            Body.setVelocity(b, { x: 0, y: 0 });
+          }
+          Composite.add(engine.world, b);
+          b.el.style.display = '';
+        } else if (!show && b.inWorld) {
+          Composite.remove(engine.world, b);
+          b.el.style.display = 'none';
+        } else if (!show) {
+          b.el.style.display = 'none';
+        }
+        b.inWorld = show;
+      });
+    }
+
+    function sync() {
+      bodies.forEach(b => {
+        if (!b.inWorld) return;
+        b.el.style.transform =
+          `translate(${(b.position.x - b.pw / 2).toFixed(1)}px, ${(b.position.y - b.ph / 2).toFixed(1)}px) rotate(${b.angle.toFixed(3)}rad)`;
+      });
+    }
+
+    function loop() {
+      if (visible && engine) { Engine.update(engine, 1000 / 60); sync(); }
+      requestAnimationFrame(loop);
+    }
+
+    new IntersectionObserver(([en]) => { visible = en.isIntersecting; }, { threshold: 0.15 }).observe(stage);
+
+    // controls
+    $$('.chip[data-cat]').forEach(chip => chip.addEventListener('click', () => {
+      $$('.chip[data-cat]').forEach(c => c.classList.toggle('is-on', c === chip));
+      applyFilter(chip.dataset.cat);
+    }));
+    $('#shakeBtn').addEventListener('click', () => {
+      bodies.forEach(b => {
+        if (!b.inWorld) return;
+        Body.setVelocity(b, { x: rand(-16, 16), y: rand(-22, -6) });
+        Body.setAngularVelocity(b, rand(-0.25, 0.25));
+      });
+    });
+    const zeroBtn = $('#zeroBtn');
+    zeroBtn.addEventListener('click', () => {
+      zero = !zero;
+      zeroBtn.setAttribute('aria-pressed', String(zero));
+      engine.gravity.y = zero ? 0 : 1;
+      if (zero) bodies.forEach(b => b.inWorld && Body.setVelocity(b, { x: rand(-3, 3), y: rand(-3, 3) }));
+    });
+
+    let rt;
+    addEventListener('resize', () => {
+      clearTimeout(rt);
+      rt = setTimeout(() => { if (stage.clientWidth !== lastW) build(); }, 250);
+    });
+
+    build();
+    loop();
+  }
+  // Matter is loaded with `defer` before this file, but guard anyway.
+  if (window.Matter) initToolbox();
+  else addEventListener('load', initToolbox);
+
+  /* ---------- contact form: submit without leaving the page ---------- */
+  const form = $('#contactForm');
+  const status = $('#formStatus');
+  const sendBtn = $('#sendBtn');
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    sendBtn.disabled = true;
+    status.textContent = 'Sending…';
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { Accept: 'application/json' }
+      });
+      if (!res.ok) throw new Error('bad response');
+      form.reset();
+      status.textContent = 'Thanks! I’ll get back to you soon.';
+    } catch (err) {
+      status.textContent = 'Something went wrong — please try again.';
+    } finally {
+      sendBtn.disabled = false;
+    }
   });
 })();

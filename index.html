@@ -1,545 +1,384 @@
 <!DOCTYPE html>
-<html lang="en" id="home">
+<html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Dicky Afriza | Web Developer & Creative Technologist</title>
-  <meta name="description" content="Muhammad Dicky Afriza — Web Developer, Creative Technologist based in Semarang, Indonesia. Crafting outstanding digital experiences with modern web technologies." />
+  <title>Dicky Afriza | Web Developer &amp; Creative Technologist</title>
+  <meta name="description" content="Muhammad Dicky Afriza — Web Developer and Creative Technologist based in Semarang, Indonesia. Careful, thoughtful digital experiences built with modern web technologies." />
   <meta name="keywords" content="Dicky Afriza, Web Developer, Semarang, Indonesia, Portfolio, Full Stack, Creative Technologist" />
-  <meta property="og:title" content="Dicky Afriza | Web Developer & Creative Technologist" />
-  <meta property="og:description" content="Crafting outstanding digital experiences with modern web technologies." />
+  <meta property="og:title" content="Dicky Afriza | Web Developer &amp; Creative Technologist" />
+  <meta property="og:description" content="Careful, thoughtful digital experiences built with modern web technologies." />
   <meta property="og:type" content="website" />
-  <meta name="theme-color" content="#060610" />
+  <meta name="theme-color" content="#f4eddf" />
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..800;1,9..144,300..800&family=DM+Sans:opsz,wght@9..40,400..700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css">
 </head>
-<body data-theme="dark">
+<body>
 
-<!-- Custom Cursor -->
-<div class="custom-cursor" id="customCursor"></div>
-<div class="custom-cursor-dot" id="customCursorDot"></div>
+<!-- progress + cursor + peek preview -->
+<div class="progress" id="progress" aria-hidden="true"></div>
+<div class="cursor" id="cursor" aria-hidden="true"><span class="cursor-label"></span></div>
+<div class="peek" id="peek" aria-hidden="true"><div class="peek-in"><img alt="" /></div></div>
 
-<!-- Scroll Progress -->
-<div class="scroll-progress" id="scrollProgress"></div>
-
-<!-- Background Layers -->
-<div class="bg-grid"></div>
-<div class="bg-gradient-orbs">
-  <div class="orb orb-1"></div>
-  <div class="orb orb-2"></div>
-  <div class="orb orb-3"></div>
-</div>
-
-<!-- Floating Geometric Elements -->
-<div class="floating-elements">
-  <div class="float-shape float-shape-1" data-parallax="-0.03"></div>
-  <div class="float-shape float-shape-2" data-parallax="0.05"></div>
-  <div class="float-shape float-shape-3" data-parallax="-0.04"></div>
-  <div class="float-shape float-shape-4" data-parallax="0.06"></div>
-  <div class="float-shape float-shape-5" data-parallax="-0.02"></div>
-</div>
-
-<!-- HEADER -->
-<header id="mainHeader">
-  <nav>
-    <a href="#home" class="logo">
-      <span class="logo-bracket">{</span> dicky <span class="logo-bracket">}</span>
-    </a>
-    <div class="nav-links">
-      <a href="#about" class="nav-link">about</a>
-      <a href="#skills" class="nav-link">skills</a>
-      <a href="#portfolio" class="nav-link">work</a>
-      <a href="#contact" class="nav-link">contact</a>
-      <button id="themeToggle" class="theme-toggle" aria-label="Toggle theme">
-        <svg class="icon-sun" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-        <svg class="icon-moon" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
-      </button>
-    </div>
-    <button class="mobile-menu-btn" aria-label="Open menu">
-      <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
-    </button>
-  </nav>
-  <div id="mobileMenu" class="mobile-menu">
-    <a href="#about">about</a>
-    <a href="#skills">skills</a>
-    <a href="#portfolio">work</a>
-    <a href="#contact">contact</a>
-    <button id="themeToggleMobile" class="theme-toggle" aria-label="Toggle theme">
-      <svg class="icon-sun" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z"/></svg>
-      <svg class="icon-moon" width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+<!-- ===================== HEADER ===================== -->
+<header class="site-header" id="siteHeader">
+  <a href="#hello" class="logo" aria-label="Dicky — back to top">dicky<span>.</span></a>
+  <p class="hdr-label" aria-hidden="true"><span id="counterNum">01</span> <i>/ 07</i> <span id="counterLabel">Hello</span></p>
+  <div class="header-right">
+    <span class="clock" aria-label="Local time in Semarang">Semarang <time id="clock">--:--</time></span>
+    <nav class="nav" aria-label="Primary">
+      <a href="#about" data-nav="about">About</a>
+      <a href="#work" data-nav="work">Work</a>
+      <a href="#toolbox" data-nav="toolbox">Toolbox</a>
+      <a href="#contact" data-nav="contact">Contact</a>
+    </nav>
+    <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
+      <span></span><span></span>
     </button>
   </div>
 </header>
 
-<!-- ===================== HERO ===================== -->
-<section class="hero" id="heroSection">
-  <canvas class="hero-canvas" id="particleCanvas"></canvas>
+<div class="mobile-menu" id="mobileMenu" aria-hidden="true">
+  <a href="#about"><i>02</i>About</a>
+  <a href="#numbers"><i>03</i>Numbers</a>
+  <a href="#work"><i>04</i>Work</a>
+  <a href="#toolbox"><i>05</i>Toolbox</a>
+  <a href="#education"><i>06</i>Education</a>
+  <a href="#contact"><i>07</i>Contact</a>
+</div>
 
-  <!-- Hero section decorative elements -->
-  <div class="section-deco deco-circle-outline" data-deco-speed="0.8" data-deco-dir="up" data-deco-rotate="15"></div>
-  <div class="section-deco deco-cross" data-deco-speed="0.6" data-deco-dir="down"></div>
-  <div class="section-deco deco-ring" data-deco-speed="1" data-deco-dir="right" data-deco-rotate="0"></div>
+<main>
 
-  <div class="hero-content">
-    <div class="hero-left">
-      <p class="hero-greeting mono">// hello world</p>
-      <h1 class="hero-name">Muhammad Dicky<br><span class="accent">Afriza</span></h1>
-      <p class="hero-role mono">
-        <span class="accent">&gt;</span>
-        <span id="typingText">web_developer</span><span class="cursor-blink"></span>
-      </p>
-      <p class="hero-desc">Crafting clean, functional, and thoughtful digital experiences from Semarang, Indonesia.</p>
-      <div class="hero-actions">
-        <a href="#portfolio" class="btn-primary magnetic">
-          View Projects
-          <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
-        </a>
-        <a href="#contact" class="btn-outline magnetic">Get in Touch</a>
-      </div>
-      <div class="hero-socials">
-        <a href="https://github.com/dickyafriza" target="_blank" aria-label="GitHub">
-          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M12 .297c-6.6 0-12 5.4-12 12 0 5.3 3.438 9.8 8.205 11.385.6.113.82-.26.82-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.332-1.757-1.332-1.757-1.089-.745.084-.729.084-.729 1.205.084 1.84 1.236 1.84 1.236 1.07 1.834 2.809 1.304 3.495.998.108-.775.419-1.304.762-1.604-2.665-.3-5.466-1.334-5.466-5.933 0-1.31.467-2.382 1.236-3.221-.124-.302-.535-1.521.117-3.176 0 0 1.008-.323 3.3 1.23.957-.266 1.983-.399 3.005-.404 1.021.005 2.048.138 3.006.404 2.29-1.553 3.296-1.23 3.296-1.23.653 1.655.242 2.874.118 3.176.77.839 1.235 1.911 1.235 3.221 0 4.609-2.804 5.629-5.476 5.924.43.372.823 1.104.823 2.229v3.304c0 .32.218.694.825.576C20.565 22.092 24 17.592 24 12.297c0-6.6-5.4-12-12-12"/></svg>
-        </a>
-        <a href="http://instagram.com/dickyafrz" target="_blank" aria-label="Instagram">
-          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M7.75 2A5.75 5.75 0 002 7.75v8.5A5.75 5.75 0 007.75 22h8.5A5.75 5.75 0 0022 16.25v-8.5A5.75 5.75 0 0016.25 2h-8.5zm0 1.5h8.5A4.25 4.25 0 0120.5 7.75v8.5a4.25 4.25 0 01-4.25 4.25h-8.5A4.25 4.25 0 013.5 16.25v-8.5A4.25 4.25 0 017.75 3.5zm4.25 3a5.25 5.25 0 100 10.5 5.25 5.25 0 000-10.5zm0 1.5a3.75 3.75 0 110 7.5 3.75 3.75 0 010-7.5zm6 1.25a1 1 0 10-.002 2.002A1 1 0 0018 6.25z"/></svg>
-        </a>
-        <a href="https://www.youtube.com/channel/UC7xRxaGHb1D309DKP31NS7w" target="_blank" aria-label="YouTube">
-          <svg width="20" height="20" fill="currentColor" viewBox="0 0 24 24"><path d="M21.8 8.001s-.2-1.399-.799-2.001c-.8-.9-1.7-.901-2.1-.951C15.2 4.938 12 4.938 12 4.938h-.021s-3.2 0-6.9.11c-.4.05-1.3.051-2.1.951C2.2 6.602 2 8.001 2 8.001A19.65 19.65 0 002 12a19.65 19.65 0 00.122 3.999s.2 1.399.8 2c.8.9 1.9.899 2.4.999C7.1 19.063 12 19.063 12 19.063s3.2 0 6.9-.109c.4-.05 1.3-.05 2.1-.95.6-.601.8-2 .8-2A19.65 19.65 0 0022 12a19.65 19.65 0 00-.2-4zm-12.4 7V9l6.2 3-6.2 3z"/></svg>
-        </a>
-      </div>
+<!-- ===================== 01 HELLO (two layers, hover reveals the other side) ===================== -->
+<section class="section hero" id="hello"
+  data-section data-label="Hello" data-bg="#f4eddf" data-ink="#15130f">
+
+  <div class="hero-layer hero-base">
+    <div class="blob" id="blobA" aria-hidden="true"></div>
+    <div class="hero-top">
+      <span>(Portfolio)</span>
+      <span>Web developer</span>
+      <span class="hide-sm">Semarang, Indonesia ↘</span>
     </div>
-    <div class="hero-right">
-      <div class="hero-3d-wrapper" data-parallax="-0.06">
-        <div class="hero-3d-glow"></div>
-        <img src="img/hero-3d.jpg" alt="3D Geometric Art" class="hero-3d-image" />
-      </div>
-      <div class="terminal-card tilt-card">
-        <div class="card-glare"></div>
-        <div class="terminal-header">
-          <span class="terminal-dot red"></span>
-          <span class="terminal-dot yellow"></span>
-          <span class="terminal-dot green"></span>
-          <span class="terminal-title mono">about.json</span>
-        </div>
-        <div class="terminal-body mono">
-<pre>{
-  <span class="json-key">"name"</span>: <span class="json-val">"Dicky Afriza"</span>,
-  <span class="json-key">"role"</span>: <span class="json-val">"Web Developer"</span>,
-  <span class="json-key">"location"</span>: <span class="json-val">"Semarang, ID"</span>,
-  <span class="json-key">"available"</span>: <span class="json-bool">true</span>
-}</pre>
-        </div>
-      </div>
+    <h1 class="hero-name">
+      <span class="ln"><span>Dicky</span></span>
+      <span class="ln l2"><span><em>Afriza</em></span></span>
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-sub">Crafting careful, quick and a little bit alive websites.<br><b>Hover around — there’s another side.</b></p>
+      <a href="#about" class="seal" aria-label="Scroll to about">
+        <svg viewBox="0 0 200 200" aria-hidden="true">
+          <defs><path id="sealA" d="M100,100 m-76,0 a76,76 0 1,1 152,0 a76,76 0 1,1 -152,0"/></defs>
+          <text><textPath href="#sealA" textLength="470" lengthAdjust="spacing">SCROLL DOWN ✺ DICKY AFRIZA ✺ WEB DEVELOPER ✺</textPath></text>
+        </svg>
+        <b>↓</b>
+      </a>
+    </div>
+  </div>
+
+  <div class="hero-layer hero-alt" id="heroAlt" aria-hidden="true">
+    <div class="blob" aria-hidden="true"></div>
+    <div class="hero-top">
+      <span>(Portfolio)</span>
+      <span>Creative technologist</span>
+      <span class="hide-sm">Pixels, motion &amp; code ↘</span>
+    </div>
+    <div class="hero-name">
+      <span class="ln"><span>Dicky</span></span>
+      <span class="ln l2"><span><em>Afriza</em></span></span>
+    </div>
+    <div class="hero-bottom">
+      <p class="hero-sub">Where design, motion and code<br>quietly shake hands.<br><b>Okay, you found it ✺</b></p>
+      <span class="seal">
+        <svg viewBox="0 0 200 200" aria-hidden="true">
+          <defs><path id="sealB" d="M100,100 m-76,0 a76,76 0 1,1 152,0 a76,76 0 1,1 -152,0"/></defs>
+          <text><textPath href="#sealB" textLength="470" lengthAdjust="spacing">SCROLL DOWN ✺ DICKY AFRIZA ✺ WEB DEVELOPER ✺</textPath></text>
+        </svg>
+        <b>↓</b>
+      </span>
     </div>
   </div>
 </section>
 
-<!-- 3D Modern Transition: Hero → About -->
-<div class="transition-3d">
-  <div class="transition-3d-stage">
-    <div class="perspective-grid-plane"></div>
-    <div class="perspective-horizon-line"></div>
-    <div class="perspective-light-cone"></div>
-  </div>
-  <div class="transition-3d-core">
-    <div class="transition-3d-laser-left"></div>
-    <div class="transition-3d-badge">
-      <div class="iso-cube-scene">
-        <div class="iso-cube" data-3d-spin>
-          <div class="cube-face cube-front"></div>
-          <div class="cube-face cube-back"></div>
-          <div class="cube-face cube-top"></div>
-          <div class="cube-face cube-bottom"></div>
-          <div class="cube-face cube-left"></div>
-          <div class="cube-face cube-right"></div>
-          <div class="cube-glow-core"></div>
-        </div>
-      </div>
-      <span class="transition-3d-code mono">// 01</span>
-      <span class="transition-3d-label mono">ABOUT</span>
-      <span class="transition-3d-dot"></span>
-    </div>
-    <div class="transition-3d-laser-right"></div>
-  </div>
-  <div class="transition-3d-ambient"></div>
-</div>
-
-<!-- ===================== ABOUT ===================== -->
-<section id="about" class="section">
-  <!-- Per-section decorative parallax elements -->
-  <div class="section-deco deco-diamond" data-deco-speed="0.7" data-deco-dir="up" data-deco-rotate="20" style="top:10%; right:5%;"></div>
-  <div class="section-deco deco-dots" data-deco-speed="0.5" data-deco-dir="left" style="bottom:15%; left:3%;"></div>
-  <div class="section-deco deco-arc" data-deco-speed="0.9" data-deco-dir="down" style="top:40%; right:8%;"></div>
-
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="mono section-label" data-scroll-speed="-0.05">// about</span>
-      <h2 class="section-title">A bit about me</h2>
-    </div>
+<!-- ===================== 02 ABOUT ===================== -->
+<section class="section about" id="about"
+  data-section data-label="About" data-bg="#e8dcc4" data-ink="#15130f">
+  <div class="wrap">
+    <p class="eyebrow rv"><span>(02)</span> About</p>
+    <h2 class="display huge lines">
+      <span class="line"><span>I default to</span></span>
+      <span class="line"><span>building things</span></span>
+      <span class="line"><span><em>carefully.</em></span></span>
+    </h2>
     <div class="about-grid">
-      <div class="about-card tilt-card reveal" data-delay="0">
-        <div class="card-glare"></div>
-        <div class="about-card-icon">
-          <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"/></svg>
-        </div>
-        <h3>Background</h3>
-        <p>I'm <strong>Muhammad Dicky Afriza</strong>, born in Semarang. Currently studying Informatics Engineering at <strong>Dian Nuswantoro University</strong>. Passionate about building innovative web solutions and exploring new technologies.</p>
-      </div>
-      <div class="about-card tilt-card reveal" data-delay="150">
-        <div class="card-glare"></div>
-        <div class="about-card-icon">
-          <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"/></svg>
-        </div>
-        <h3>What I Do</h3>
-        <p>I design and build websites — from landing pages to full-stack web applications. I care about clean code, good user experience, and making things that actually work well.</p>
+      <p class="fill lead">I’m <strong>Muhammad Dicky Afriza</strong>, born in Semarang and currently studying Informatics Engineering at <strong>Dian Nuswantoro University</strong>. I love turning ideas into websites that feel quick, clear and a little bit alive.</p>
+      <div class="about-side">
+        <p class="rv">I design and build websites — from landing pages to full-stack web applications. I care about clean code, good user experience, and making things that actually work well, long after launch day.</p>
+        <dl class="facts rv" data-delay="120">
+          <div><dt>Based in</dt><dd>Semarang, ID</dd></div>
+          <div><dt>Studying</dt><dd>Informatics Eng.</dd></div>
+          <div><dt>Focus</dt><dd>Web development</dd></div>
+        </dl>
       </div>
     </div>
-    <div class="stats-row">
-      <div class="stat-item reveal" data-delay="0" data-scroll-speed="-0.02">
-        <span class="stat-number mono" data-count="9" data-suffix="+">0</span>
-        <span class="stat-label">Projects</span>
-      </div>
-      <div class="stat-item reveal" data-delay="100" data-scroll-speed="0.02">
-        <span class="stat-number mono" data-count="3" data-suffix="+">0</span>
-        <span class="stat-label">Years Exp</span>
-      </div>
-      <div class="stat-item reveal" data-delay="200" data-scroll-speed="-0.02">
-        <span class="stat-number mono" data-count="10" data-suffix="+">0</span>
-        <span class="stat-label">Clients</span>
-      </div>
-      <div class="stat-item reveal" data-delay="300" data-scroll-speed="0.02">
-        <span class="stat-number mono">∞</span>
-        <span class="stat-label">Coffee</span>
-      </div>
+  </div>
+
+  <div class="marquee" aria-label="Technologies I work with">
+    <div class="marquee-track">
+      <span>HTML5</span><i>✺</i><span>CSS3</span><i>✺</i><span>JavaScript</span><i>✺</i><span>React</span><i>✺</i><span>PHP</span><i>✺</i><span>Laravel</span><i>✺</i><span>MySQL</span><i>✺</i><span>Git</span><i>✺</i><span>Figma</span><i>✺</i><span>Python</span><i>✺</i>
+    </div>
+    <div class="marquee-track rev outline" aria-hidden="true">
+      <span>Clean code</span><i>✺</i><span>Good UX</span><i>✺</i><span>Fast pages</span><i>✺</i><span>Real products</span><i>✺</i><span>Careful details</span><i>✺</i>
     </div>
   </div>
 </section>
 
-<!-- 3D Modern Transition: About → Ticker -->
-<div class="transition-3d">
-  <div class="transition-3d-stage">
-    <div class="perspective-grid-plane"></div>
-    <div class="perspective-horizon-line"></div>
-    <div class="perspective-light-cone"></div>
-  </div>
-  <div class="transition-3d-core">
-    <div class="transition-3d-laser-left"></div>
-    <div class="transition-3d-badge">
-      <div class="iso-cube-scene">
-        <div class="iso-cube" data-3d-spin>
-          <div class="cube-face cube-front"></div>
-          <div class="cube-face cube-back"></div>
-          <div class="cube-face cube-top"></div>
-          <div class="cube-face cube-bottom"></div>
-          <div class="cube-face cube-left"></div>
-          <div class="cube-face cube-right"></div>
-          <div class="cube-glow-core"></div>
-        </div>
-      </div>
-      <span class="transition-3d-code mono">// 02</span>
-      <span class="transition-3d-label mono">TECH STACK</span>
-      <span class="transition-3d-dot"></span>
-    </div>
-    <div class="transition-3d-laser-right"></div>
-  </div>
-  <div class="transition-3d-ambient"></div>
-</div>
-
-<!-- ===================== INFINITE TICKER ===================== -->
-<div class="ticker-section">
-  <div class="ticker-wrapper">
-    <div class="ticker-track">
-      <span class="ticker-item">HTML5</span>
-      <span class="ticker-sep">✦</span>
-      <span class="ticker-item">CSS3</span>
-      <span class="ticker-sep">✦</span>
-      <span class="ticker-item">JavaScript</span>
-      <span class="ticker-sep">✦</span>
-      <span class="ticker-item">React</span>
-      <span class="ticker-sep">✦</span>
-      <span class="ticker-item">Laravel</span>
-      <span class="ticker-sep">✦</span>
-      <span class="ticker-item">PHP</span>
-      <span class="ticker-sep">✦</span>
-      <span class="ticker-item">MySQL</span>
-      <span class="ticker-sep">✦</span>
-      <span class="ticker-item">Git</span>
-      <span class="ticker-sep">✦</span>
-      <span class="ticker-item">Figma</span>
-      <span class="ticker-sep">✦</span>
-      <span class="ticker-item">Python</span>
-      <span class="ticker-sep">✦</span>
-      <span class="ticker-item">HTML5</span>
-      <span class="ticker-sep">✦</span>
-      <span class="ticker-item">CSS3</span>
-      <span class="ticker-sep">✦</span>
-      <span class="ticker-item">JavaScript</span>
-      <span class="ticker-sep">✦</span>
-      <span class="ticker-item">React</span>
-      <span class="ticker-sep">✦</span>
-      <span class="ticker-item">Laravel</span>
-      <span class="ticker-sep">✦</span>
-      <span class="ticker-item">PHP</span>
-      <span class="ticker-sep">✦</span>
-      <span class="ticker-item">MySQL</span>
-      <span class="ticker-sep">✦</span>
-      <span class="ticker-item">Git</span>
-      <span class="ticker-sep">✦</span>
-      <span class="ticker-item">Figma</span>
-      <span class="ticker-sep">✦</span>
-      <span class="ticker-item">Python</span>
-      <span class="ticker-sep">✦</span>
-    </div>
-  </div>
-</div>
-
-<!-- 3D Modern Transition: Ticker → Skills -->
-<div class="transition-3d">
-  <div class="transition-3d-stage">
-    <div class="perspective-grid-plane"></div>
-    <div class="perspective-horizon-line"></div>
-    <div class="perspective-light-cone"></div>
-  </div>
-  <div class="transition-3d-core">
-    <div class="transition-3d-laser-left"></div>
-    <div class="transition-3d-badge">
-      <div class="iso-cube-scene">
-        <div class="iso-cube" data-3d-spin>
-          <div class="cube-face cube-front"></div>
-          <div class="cube-face cube-back"></div>
-          <div class="cube-face cube-top"></div>
-          <div class="cube-face cube-bottom"></div>
-          <div class="cube-face cube-left"></div>
-          <div class="cube-face cube-right"></div>
-          <div class="cube-glow-core"></div>
-        </div>
-      </div>
-      <span class="transition-3d-code mono">// 03</span>
-      <span class="transition-3d-label mono">CAPABILITIES</span>
-      <span class="transition-3d-dot"></span>
-    </div>
-    <div class="transition-3d-laser-right"></div>
-  </div>
-  <div class="transition-3d-ambient"></div>
-</div>
-
-<!-- ===================== SKILLS ===================== -->
-<section id="skills" class="section">
-  <!-- Per-section decorative parallax elements -->
-  <div class="section-deco deco-triangle" data-deco-speed="0.6" data-deco-dir="up" data-deco-rotate="10" style="top:8%; left:5%;"></div>
-  <div class="section-deco deco-square-outline" data-deco-speed="0.8" data-deco-dir="right" data-deco-rotate="25" style="bottom:10%; right:4%;"></div>
-
-  <div class="container">
-    <div class="section-header reveal" style="text-align:center;">
-      <span class="mono section-label">// skills</span>
-      <h2 class="section-title">Tech Stack</h2>
-      <p class="section-desc" style="margin-left:auto; margin-right:auto;">Technologies and tools I work with to bring ideas to life.</p>
-    </div>
-    <div class="skills-container" data-scroll-scale="0.92">
-      <div class="skill-badge reveal" data-delay="0">
-        <span class="skill-icon">⚡</span> HTML5
-      </div>
-      <div class="skill-badge reveal" data-delay="50">
-        <span class="skill-icon">🎨</span> CSS3
-      </div>
-      <div class="skill-badge reveal" data-delay="100">
-        <span class="skill-icon">✨</span> JavaScript
-      </div>
-      <div class="skill-badge reveal" data-delay="150">
-        <span class="skill-icon">⚛️</span> React
-      </div>
-      <div class="skill-badge reveal" data-delay="200">
-        <span class="skill-icon">🐘</span> PHP
-      </div>
-      <div class="skill-badge reveal" data-delay="250">
-        <span class="skill-icon">🔥</span> Laravel
-      </div>
-      <div class="skill-badge reveal" data-delay="300">
-        <span class="skill-icon">🗄️</span> MySQL
-      </div>
-      <div class="skill-badge reveal" data-delay="350">
-        <span class="skill-icon">🐙</span> Git
-      </div>
-      <div class="skill-badge reveal" data-delay="400">
-        <span class="skill-icon">🎯</span> Figma
-      </div>
-      <div class="skill-badge reveal" data-delay="450">
-        <span class="skill-icon">🐍</span> Python
-      </div>
+<!-- ===================== 03 NUMBERS ===================== -->
+<section class="section numbers" id="numbers"
+  data-section data-label="Numbers" data-bg="#1f3d2e" data-ink="#f8f2e4">
+  <div class="wrap">
+    <p class="eyebrow rv"><span>(03)</span> Numbers</p>
+    <h2 class="display huge lines">
+      <span class="line"><span>Numbers,</span></span>
+      <span class="line"><span>not <em>adjectives.</em></span></span>
+    </h2>
+    <div class="num-grid">
+      <article class="num-card rv" data-delay="0">
+        <span class="num display"><b data-count="9">0</b><sup>+</sup></span>
+        <h3>Projects shipped</h3>
+        <p>Landing pages, school sites, corporate platforms and web apps.</p>
+      </article>
+      <article class="num-card rv" data-delay="100">
+        <span class="num display"><b data-count="3">0</b><sup>+</sup></span>
+        <h3>Years building</h3>
+        <p>Learning in public and shipping real things along the way.</p>
+      </article>
+      <article class="num-card rv" data-delay="200">
+        <span class="num display"><b data-count="10">0</b><sup>+</sup></span>
+        <h3>Happy clients</h3>
+        <p>People who came with a rough idea and left with a working site.</p>
+      </article>
+      <article class="num-card rv" data-delay="300">
+        <span class="num display">∞</span>
+        <h3>Cups of coffee</h3>
+        <p>The unofficial fuel behind every late-night deploy.</p>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- 3D Modern Transition: Skills → Portfolio -->
-<div class="transition-3d">
-  <div class="transition-3d-stage">
-    <div class="perspective-grid-plane"></div>
-    <div class="perspective-horizon-line"></div>
-    <div class="perspective-light-cone"></div>
-  </div>
-  <div class="transition-3d-core">
-    <div class="transition-3d-laser-left"></div>
-    <div class="transition-3d-badge">
-      <div class="iso-cube-scene">
-        <div class="iso-cube" data-3d-spin>
-          <div class="cube-face cube-front"></div>
-          <div class="cube-face cube-back"></div>
-          <div class="cube-face cube-top"></div>
-          <div class="cube-face cube-bottom"></div>
-          <div class="cube-face cube-left"></div>
-          <div class="cube-face cube-right"></div>
-          <div class="cube-glow-core"></div>
-        </div>
-      </div>
-      <span class="transition-3d-code mono">// 04</span>
-      <span class="transition-3d-label mono">SELECTED WORKS</span>
-      <span class="transition-3d-dot"></span>
+<!-- ===================== 04 WORK ===================== -->
+<section class="section work" id="work"
+  data-section data-label="Work" data-bg="#f4eddf" data-ink="#15130f">
+  <div class="wrap">
+    <p class="eyebrow rv"><span>(04)</span> Work</p>
+    <div class="work-head">
+      <h2 class="display huge lines">
+        <span class="line"><span>Selected</span></span>
+        <span class="line"><span><em>projects</em></span></span>
+      </h2>
+      <p class="section-desc rv">A collection of projects showcasing web development, design and problem-solving. Hover a row for a sneak peek, click to open it.</p>
     </div>
-    <div class="transition-3d-laser-right"></div>
-  </div>
-  <div class="transition-3d-ambient"></div>
-</div>
 
-<!-- ===================== PORTFOLIO ===================== -->
-<section id="portfolio" class="section">
-  <!-- Per-section decorative parallax elements -->
-  <div class="section-deco deco-hexagon" data-deco-speed="0.7" data-deco-dir="down" data-deco-rotate="5" style="top:5%; right:6%;"></div>
-  <div class="section-deco deco-plus" data-deco-speed="0.5" data-deco-dir="up" style="bottom:8%; left:4%;"></div>
-  <div class="section-deco deco-circle-small" data-deco-speed="0.9" data-deco-dir="left" style="top:50%; right:3%;"></div>
-
-  <div class="container">
-    <div class="section-header reveal">
-      <span class="mono section-label">// work</span>
-      <h2 class="section-title">Selected Projects</h2>
-      <p class="section-desc">A collection of projects showcasing web development, design, and problem-solving.</p>
-    </div>
-    <div class="portfolio-grid">
-      <div class="portfolio-card tilt-card reveal" data-delay="0">
-        <div class="card-glare"></div>
-        <div class="portfolio-img-wrap"><img src="img/portfolio/ibs-man-demak.png" alt="IBS MAN Demak" loading="lazy"/></div>
-        <div class="portfolio-info"><h4>IBS MAN Demak</h4><span class="mono tag">Web Development</span></div>
-      </div>
-      <div class="portfolio-card tilt-card reveal" data-delay="80">
-        <div class="card-glare"></div>
-        <div class="portfolio-img-wrap"><img src="img/portfolio/web (2).png" alt="Web Project" loading="lazy"/></div>
-        <div class="portfolio-info"><h4>Web Project</h4><span class="mono tag">Frontend</span></div>
-      </div>
-      <div class="portfolio-card tilt-card reveal" data-delay="160">
-        <div class="card-glare"></div>
-        <div class="portfolio-img-wrap"><img src="img/portfolio/web (3).png" alt="Creative Design" loading="lazy"/></div>
-        <div class="portfolio-info"><h4>Creative Design</h4><span class="mono tag">UI/UX</span></div>
-      </div>
-      <div class="portfolio-card tilt-card reveal" data-delay="240">
-        <div class="card-glare"></div>
-        <div class="portfolio-img-wrap"><img src="img/portfolio/web (6).png" alt="Web Application" loading="lazy"/></div>
-        <div class="portfolio-info"><h4>Web Application</h4><span class="mono tag">Full Stack</span></div>
-      </div>
-      <div class="portfolio-card tilt-card reveal" data-delay="320">
-        <div class="card-glare"></div>
-        <div class="portfolio-img-wrap"><img src="img/portfolio/web (7).png" alt="Modern Website" loading="lazy"/></div>
-        <div class="portfolio-info"><h4>Modern Website</h4><span class="mono tag">Web Development</span></div>
-      </div>
-      <div class="portfolio-card tilt-card reveal" data-delay="400">
-        <div class="card-glare"></div>
-        <div class="portfolio-img-wrap"><img src="img/portfolio/web (8).png" alt="Digital Platform" loading="lazy"/></div>
-        <div class="portfolio-info"><h4>Digital Platform</h4><span class="mono tag">Web Development</span></div>
-      </div>
-      <div class="portfolio-card tilt-card reveal" data-delay="480">
-        <div class="card-glare"></div>
-        <div class="portfolio-img-wrap"><img src="img/portfolio/hijau-semesta-maju.png" alt="Hijau Semesta Maju" loading="lazy"/></div>
-        <div class="portfolio-info"><h4>Hijau Semesta Maju</h4><span class="mono tag">Corporate</span></div>
-      </div>
-      <div class="portfolio-card tilt-card reveal" data-delay="560">
-        <div class="card-glare"></div>
-        <div class="portfolio-img-wrap"><img src="img/portfolio/aeroterra.png" alt="Aeroterra" loading="lazy"/></div>
-        <div class="portfolio-info"><h4>Aeroterra</h4><span class="mono tag">Web Platform</span></div>
-      </div>
-      <div class="portfolio-card tilt-card reveal" data-delay="640">
-        <div class="card-glare"></div>
-        <div class="portfolio-img-wrap"><img src="img/portfolio/klasifikasi-anomali-imk.png" alt="Klasifikasi Anomali" loading="lazy"/></div>
-        <div class="portfolio-info"><h4>Klasifikasi Anomali</h4><span class="mono tag">AI / ML</span></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- 3D Modern Transition: Portfolio → Contact -->
-<div class="transition-3d">
-  <div class="transition-3d-stage">
-    <div class="perspective-grid-plane"></div>
-    <div class="perspective-horizon-line"></div>
-    <div class="perspective-light-cone"></div>
-  </div>
-  <div class="transition-3d-core">
-    <div class="transition-3d-laser-left"></div>
-    <div class="transition-3d-badge">
-      <div class="iso-cube-scene">
-        <div class="iso-cube" data-3d-spin>
-          <div class="cube-face cube-front"></div>
-          <div class="cube-face cube-back"></div>
-          <div class="cube-face cube-top"></div>
-          <div class="cube-face cube-bottom"></div>
-          <div class="cube-face cube-left"></div>
-          <div class="cube-face cube-right"></div>
-          <div class="cube-glow-core"></div>
-        </div>
-      </div>
-      <span class="transition-3d-code mono">// 05</span>
-      <span class="transition-3d-label mono">TRANSMISSION</span>
-      <span class="transition-3d-dot"></span>
-    </div>
-    <div class="transition-3d-laser-right"></div>
-  </div>
-  <div class="transition-3d-ambient"></div>
-</div>
-
-<!-- ===================== CONTACT ===================== -->
-<section id="contact" class="section">
-  <div class="section-deco deco-cube-wire" data-deco-speed="0.6" data-deco-dir="right" style="top:15%; left:5%;"></div>
-  <div class="section-deco deco-circle-outline deco-sm" data-deco-speed="0.8" data-deco-dir="up" data-deco-rotate="0" style="bottom:10%; right:8%;"></div>
-
-  <div class="container container-sm">
-    <div class="section-header reveal" style="text-align:center;">
-      <span class="mono section-label">// contact</span>
-      <h2 class="section-title">Let's work together</h2>
-      <p class="section-desc" style="margin-left:auto; margin-right:auto;">Have a project in mind? Drop me a message.</p>
-    </div>
-    <div class="contact-card reveal-scale reveal" data-delay="200">
-      <form action="https://formspree.io/f/mpwoqwkp" method="POST" id="contactForm">
-        <div class="form-row">
-          <div class="form-group">
-            <label for="name">Name</label>
-            <input type="text" id="name" name="name" required placeholder="Your name" />
-          </div>
-          <div class="form-group">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required placeholder="you@example.com" />
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="message">Message</label>
-          <textarea id="message" name="message" rows="5" required placeholder="Tell me about your project..."></textarea>
-        </div>
-        <button type="submit" class="btn-primary btn-full magnetic">
-          Send Message
-          <svg width="18" height="18" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"/></svg>
+    <ul class="acc" id="acc">
+      <li class="acc-item open">
+        <button class="acc-btn" aria-expanded="true">
+          <span class="acc-n">01</span><span class="acc-t">IBS MAN Demak</span><span class="acc-tag">Web Development</span><span class="acc-plus" aria-hidden="true"></span>
         </button>
-      </form>
+        <div class="acc-panel"><div class="acc-inner">
+          <img src="img/portfolio/ibs-man-demak.png" alt="IBS MAN Demak website preview" loading="lazy" />
+          <p>A school website for IBS MAN Demak — clear information structure and a clean, readable layout.</p>
+        </div></div>
+      </li>
+      <li class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          <span class="acc-n">02</span><span class="acc-t">Hijau Semesta Maju</span><span class="acc-tag">Corporate</span><span class="acc-plus" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel"><div class="acc-inner">
+          <img src="img/portfolio/hijau-semesta-maju.png" alt="Hijau Semesta Maju website preview" loading="lazy" />
+          <p>A corporate presence for Hijau Semesta Maju, focused on trust and a confident first impression.</p>
+        </div></div>
+      </li>
+      <li class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          <span class="acc-n">03</span><span class="acc-t">Aeroterra</span><span class="acc-tag">Web Platform</span><span class="acc-plus" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel"><div class="acc-inner">
+          <img src="img/portfolio/aeroterra.png" alt="Aeroterra platform preview" loading="lazy" />
+          <p>A web platform for Aeroterra, built to present a technical product in a friendly, approachable way.</p>
+        </div></div>
+      </li>
+      <li class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          <span class="acc-n">04</span><span class="acc-t">Klasifikasi Anomali</span><span class="acc-tag">AI / ML</span><span class="acc-plus" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel"><div class="acc-inner">
+          <img src="img/portfolio/klasifikasi-anomali-imk.png" alt="Klasifikasi Anomali project preview" loading="lazy" />
+          <p>An anomaly-classification experiment — where machine learning meets a usable interface.</p>
+        </div></div>
+      </li>
+      <li class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          <span class="acc-n">05</span><span class="acc-t">Web Application</span><span class="acc-tag">Full Stack</span><span class="acc-plus" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel"><div class="acc-inner">
+          <img src="img/portfolio/web (6).png" alt="Web application preview" loading="lazy" />
+          <p>A full-stack web application with a database-backed back end and a tidy front end.</p>
+        </div></div>
+      </li>
+      <li class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          <span class="acc-n">06</span><span class="acc-t">Creative Design</span><span class="acc-tag">UI / UX</span><span class="acc-plus" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel"><div class="acc-inner">
+          <img src="img/portfolio/web (3).png" alt="Creative design preview" loading="lazy" />
+          <p>An interface-first project exploring layout, rhythm and visual hierarchy.</p>
+        </div></div>
+      </li>
+      <li class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          <span class="acc-n">07</span><span class="acc-t">Modern Website</span><span class="acc-tag">Web Development</span><span class="acc-plus" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel"><div class="acc-inner">
+          <img src="img/portfolio/web (7).png" alt="Modern website preview" loading="lazy" />
+          <p>A modern, responsive marketing website that reads well on any screen.</p>
+        </div></div>
+      </li>
+      <li class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          <span class="acc-n">08</span><span class="acc-t">Digital Platform</span><span class="acc-tag">Web Development</span><span class="acc-plus" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel"><div class="acc-inner">
+          <img src="img/portfolio/web (8).png" alt="Digital platform preview" loading="lazy" />
+          <p>A digital platform built around clear flows and straightforward interactions.</p>
+        </div></div>
+      </li>
+      <li class="acc-item">
+        <button class="acc-btn" aria-expanded="false">
+          <span class="acc-n">09</span><span class="acc-t">Web Project</span><span class="acc-tag">Frontend</span><span class="acc-plus" aria-hidden="true"></span>
+        </button>
+        <div class="acc-panel"><div class="acc-inner">
+          <img src="img/portfolio/web (2).png" alt="Web project preview" loading="lazy" />
+          <p>A frontend-focused build — semantic markup, careful CSS and a sprinkle of JavaScript.</p>
+        </div></div>
+      </li>
+    </ul>
+  </div>
+</section>
+
+<!-- ===================== 05 TOOLBOX ===================== -->
+<section class="section toolbox" id="toolbox"
+  data-section data-label="Toolbox" data-bg="#b3c19f" data-ink="#15130f">
+  <div class="wrap">
+    <p class="eyebrow rv"><span>(05)</span> Toolbox</p>
+    <h2 class="display huge lines">
+      <span class="line"><span>Toolbox, but</span></span>
+      <span class="line"><span><em>you can throw it.</em></span></span>
+    </h2>
+
+    <div class="toy-controls rv">
+      <div class="chips" role="group" aria-label="Filter skills">
+        <button class="chip is-on" data-cat="all">All</button>
+        <button class="chip" data-cat="frontend">Frontend</button>
+        <button class="chip" data-cat="backend">Backend</button>
+        <button class="chip" data-cat="tools">Tools</button>
+      </div>
+      <div class="chips">
+        <button class="chip chip-solid" id="shakeBtn" data-magnet>Shake</button>
+        <button class="chip chip-solid" id="zeroBtn" aria-pressed="false" data-magnet>Zero gravity</button>
+      </div>
+    </div>
+
+    <div class="toy-stage no-physics" id="toyStage">
+      <span class="pill p-ink" data-cat="frontend" data-cursor="Drag">HTML5</span>
+      <span class="pill p-terra" data-cat="frontend" data-cursor="Drag">CSS3</span>
+      <span class="pill p-cream" data-cat="frontend" data-cursor="Drag">JavaScript</span>
+      <span class="pill p-forest" data-cat="frontend" data-cursor="Drag">React</span>
+      <span class="pill p-sand" data-cat="backend" data-cursor="Drag">PHP</span>
+      <span class="pill p-terra" data-cat="backend" data-cursor="Drag">Laravel</span>
+      <span class="pill p-ink" data-cat="backend" data-cursor="Drag">MySQL</span>
+      <span class="pill p-forest" data-cat="backend" data-cursor="Drag">Python</span>
+      <span class="pill p-cream" data-cat="tools" data-cursor="Drag">Git</span>
+      <span class="pill p-sand" data-cat="tools" data-cursor="Drag">Figma</span>
+      <span class="toy-hint">Grab a skill and fling it ✺</span>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="container footer-content">
-    <p class="mono">© <span id="year"></span> dicky afriza</p>
-    <p class="footer-tagline">built with care <span class="accent">&&</span> code</p>
+<!-- ===================== 06 EDUCATION ===================== -->
+<section class="section education" id="education"
+  data-section data-label="Education" data-bg="#15130f" data-ink="#f8f2e4">
+  <div class="wrap">
+    <p class="eyebrow rv"><span>(06)</span> Education</p>
+    <h2 class="display huge lines">
+      <span class="line"><span>Still <em>learning.</em></span></span>
+    </h2>
+    <div class="edu-grid">
+      <article class="edu rv">
+        <span class="edu-big display">S1</span>
+        <h3>Informatics Engineering</h3>
+        <p>Dian Nuswantoro University — Semarang, Indonesia.</p>
+      </article>
+      <article class="edu rv" data-delay="120">
+        <span class="edu-big display">Web</span>
+        <h3>Focus: web development</h3>
+        <p>Front end, full stack and the occasional AI / ML experiment.</p>
+      </article>
+    </div>
   </div>
-</footer>
+</section>
 
-<script src="js/main.js"></script>
+<!-- ===================== 07 CONTACT ===================== -->
+<section class="section contact" id="contact"
+  data-section data-label="Contact" data-bg="#b8432c" data-ink="#f8f2e4">
+  <div class="wrap contact-wrap">
+    <div class="contact-left">
+      <p class="eyebrow rv"><span>(07)</span> Contact</p>
+      <h2 class="display huge lines">
+        <span class="line"><span>Let’s build</span></span>
+        <span class="line"><span>something</span></span>
+        <span class="line"><span><em>careful.</em></span></span>
+      </h2>
+      <ul class="links rv">
+        <li><a href="https://github.com/dickyafriza" target="_blank" rel="noopener"><span>GitHub</span><b>↗</b></a></li>
+        <li><a href="http://instagram.com/dickyafrz" target="_blank" rel="noopener"><span>Instagram</span><b>↗</b></a></li>
+        <li><a href="https://www.youtube.com/channel/UC7xRxaGHb1D309DKP31NS7w" target="_blank" rel="noopener"><span>YouTube</span><b>↗</b></a></li>
+      </ul>
+    </div>
+
+    <form class="contact-form rv" action="https://formspree.io/f/mpwoqwkp" method="POST" id="contactForm">
+      <label class="field">
+        <span>Name</span>
+        <input type="text" id="name" name="name" required placeholder="Your name" autocomplete="name" />
+      </label>
+      <label class="field">
+        <span>Email</span>
+        <input type="email" id="email" name="email" required placeholder="you@example.com" autocomplete="email" />
+      </label>
+      <label class="field">
+        <span>Message</span>
+        <textarea id="message" name="message" rows="4" required placeholder="Tell me about your project…"></textarea>
+      </label>
+      <div class="form-foot">
+        <button type="submit" class="send" id="sendBtn" data-magnet><span>Send it</span><b>→</b></button>
+        <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+      </div>
+    </form>
+  </div>
+
+  <div class="wordmark" aria-hidden="true">dicky.</div>
+  <footer class="site-footer">
+    <p>© <span id="year"></span> Dicky Afriza</p>
+    <p>built with care &amp;&amp; code</p>
+  </footer>
+</section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/matter-js@0.19.0/build/matter.min.js" defer></script>
+<script src="js/main.js" defer></script>
 </body>
 </html>
