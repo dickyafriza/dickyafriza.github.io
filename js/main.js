@@ -384,4 +384,93 @@
       sendBtn.disabled = false;
     }
   });
+
+  /* ---------- profile & quick contact modal ---------- */
+  const profileModal = $('#profileModal');
+  const profileBackdrop = $('#profileBackdrop');
+  const closeProfileModal = $('#closeProfileModal');
+  const openModalTriggers = $$('[data-open-profile], #openProfileModal, #openMobileProfile');
+  const copyEmailBtn = $('#copyEmailBtn');
+  const modalChatBtn = $('#modalChatBtn');
+  const modalContactBtn = $('#modalContactBtn');
+
+  const setProfileModal = (open) => {
+    if (!profileModal) return;
+    profileModal.classList.toggle('open', open);
+    profileModal.setAttribute('aria-hidden', String(!open));
+    document.body.classList.toggle('modal-open', open);
+  };
+
+  openModalTriggers.forEach(btn => {
+    btn?.addEventListener('click', (e) => {
+      // If trigger is inside an anchor link, prevent normal jump only if clicked on avatar-ring
+      if (btn.classList.contains('avatar-ring')) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      setProfileModal(true);
+    });
+    // Keyboard accessibility for role="button"
+    btn?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        setProfileModal(true);
+      }
+    });
+  });
+
+  closeProfileModal?.addEventListener('click', () => setProfileModal(false));
+  profileBackdrop?.addEventListener('click', () => setProfileModal(false));
+  addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && profileModal?.classList.contains('open')) setProfileModal(false);
+  });
+
+  if (copyEmailBtn) {
+    copyEmailBtn.addEventListener('click', async (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const email = copyEmailBtn.dataset.email || 'afrizadicky6@gmail.com';
+      let copied = false;
+      try {
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(email);
+          copied = true;
+        }
+      } catch (err) {}
+      if (!copied) {
+        try {
+          const ta = document.createElement('textarea');
+          ta.value = email;
+          ta.style.position = 'fixed';
+          ta.style.opacity = '0';
+          document.body.appendChild(ta);
+          ta.select();
+          document.execCommand('copy');
+          document.body.removeChild(ta);
+          copied = true;
+        } catch (e2) {}
+      }
+      const originalText = copyEmailBtn.textContent;
+      copyEmailBtn.textContent = 'Copied! ✓';
+      copyEmailBtn.classList.add('copied');
+      setTimeout(() => {
+        copyEmailBtn.textContent = originalText;
+        copyEmailBtn.classList.remove('copied');
+      }, 2200);
+    });
+  }
+
+  if (modalChatBtn) {
+    modalChatBtn.addEventListener('click', () => {
+      setProfileModal(false);
+      const cbFab = $('#cbFab');
+      if (cbFab) cbFab.click();
+    });
+  }
+
+  if (modalContactBtn) {
+    modalContactBtn.addEventListener('click', () => {
+      setProfileModal(false);
+    });
+  }
 })();

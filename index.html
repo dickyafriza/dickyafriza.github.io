@@ -26,16 +26,59 @@
 
 <!-- ===================== HEADER ===================== -->
 <header class="site-header" id="siteHeader">
-  <a href="#hello" class="logo" aria-label="Dicky — back to top">dicky<span>.</span></a>
+  <div class="header-left">
+    <a href="#hello" class="logo-group" aria-label="Muhammad Dicky Afriza — Home">
+      <span class="avatar-ring" role="button" tabindex="0" data-open-profile aria-label="Quick profile of Dicky">
+        <img src="img/dicky-avatar.jpg" alt="Muhammad Dicky Afriza" class="hdr-avatar" width="38" height="38" />
+        <span class="status-dot" title="Available for projects"></span>
+      </span>
+      <span class="logo">dicky<span>.</span></span>
+    </a>
+    <button type="button" class="hdr-chip" id="openProfileModal" aria-label="Open Dicky's profile and quick contact card">
+      <span class="chip-pulse" aria-hidden="true"></span>
+      <span class="chip-text">Available</span>
+    </button>
+  </div>
+
   <p class="hdr-label" aria-hidden="true"><span id="counterNum">01</span> <i>/ 07</i> <span id="counterLabel">Hello</span></p>
+
   <div class="header-right">
     <span class="clock" aria-label="Local time in Semarang">Semarang <time id="clock">--:--</time></span>
+
+    <!-- Social Media Quick Links in Header -->
+    <div class="hdr-socials" aria-label="Social media &amp; contact links">
+      <a href="https://github.com/dickyafriza" target="_blank" rel="noopener noreferrer" class="hdr-soc-link" data-tooltip="GitHub" aria-label="GitHub profile @dickyafriza">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+      </a>
+      <a href="https://instagram.com/dickyafrz" target="_blank" rel="noopener noreferrer" class="hdr-soc-link" data-tooltip="Instagram" aria-label="Instagram profile @dickyafrz">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a href="https://www.youtube.com/channel/UC7xRxaGHb1D309DKP31NS7w" target="_blank" rel="noopener noreferrer" class="hdr-soc-link" data-tooltip="YouTube" aria-label="YouTube channel Dicky Afriza">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+      <a href="mailto:afrizadicky6@gmail.com" class="hdr-soc-link" data-tooltip="Email Dicky" aria-label="Send direct email to Dicky">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </a>
+    </div>
+
     <nav class="nav" aria-label="Primary">
       <a href="#about" data-nav="about">About</a>
       <a href="#work" data-nav="work">Work</a>
       <a href="#toolbox" data-nav="toolbox">Toolbox</a>
       <a href="#contact" data-nav="contact">Contact</a>
     </nav>
+
+    <!-- Quick CTA button -->
+    <a href="#contact" class="hdr-cta" data-magnet aria-label="Contact Dicky">
+      <span>Let's talk</span>
+      <b aria-hidden="true">↗</b>
+    </a>
+
+    <!-- Mobile Quick Reach Button -->
+    <button type="button" class="hdr-mobile-reach" id="openMobileProfile" aria-label="Contact Dicky">
+      <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+    </button>
+
     <button class="menu-btn" id="menuBtn" aria-label="Open menu" aria-expanded="false" aria-controls="mobileMenu">
       <span></span><span></span>
     </button>
@@ -43,12 +86,48 @@
 </header>
 
 <div class="mobile-menu" id="mobileMenu" aria-hidden="true">
-  <a href="#about"><i>02</i>About</a>
-  <a href="#numbers"><i>03</i>Numbers</a>
-  <a href="#work"><i>04</i>Work</a>
-  <a href="#toolbox"><i>05</i>Toolbox</a>
-  <a href="#education"><i>06</i>Education</a>
-  <a href="#contact"><i>07</i>Contact</a>
+  <div class="mobile-menu-top">
+    <div class="mobile-avatar-wrap">
+      <img src="img/dicky-avatar.jpg" alt="Muhammad Dicky Afriza" class="mobile-avatar" width="56" height="56" />
+      <span class="status-dot"></span>
+    </div>
+    <div class="mobile-user-meta">
+      <strong>Muhammad Dicky Afriza</strong>
+      <span>Web Developer · Semarang, ID</span>
+      <span class="mobile-avail-badge">Available for work 🟢</span>
+    </div>
+  </div>
+
+  <nav class="mobile-nav-links" aria-label="Mobile Navigation">
+    <a href="#about"><i>02</i>About</a>
+    <a href="#numbers"><i>03</i>Numbers</a>
+    <a href="#work"><i>04</i>Work</a>
+    <a href="#toolbox"><i>05</i>Toolbox</a>
+    <a href="#education"><i>06</i>Education</a>
+    <a href="#contact"><i>07</i>Contact</a>
+  </nav>
+
+  <div class="mobile-menu-socials">
+    <span class="mobile-soc-title">Connect &amp; Contact:</span>
+    <div class="mobile-soc-grid">
+      <a href="https://github.com/dickyafriza" target="_blank" rel="noopener noreferrer" aria-label="GitHub profile">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+      </a>
+      <a href="https://instagram.com/dickyafrz" target="_blank" rel="noopener noreferrer" aria-label="Instagram profile">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+      </a>
+      <a href="https://www.youtube.com/channel/UC7xRxaGHb1D309DKP31NS7w" target="_blank" rel="noopener noreferrer" aria-label="YouTube channel">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+      </a>
+      <a href="mailto:afrizadicky6@gmail.com" aria-label="Direct Email">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+      </a>
+    </div>
+    <a href="mailto:afrizadicky6@gmail.com" class="mobile-cta-email">
+      <span>Email afrizadicky6@gmail.com</span>
+      <b aria-hidden="true">→</b>
+    </a>
+  </div>
 </div>
 
 <main>
@@ -115,14 +194,54 @@
       <span class="line"><span><em>carefully.</em></span></span>
     </h2>
     <div class="about-grid">
-      <p class="fill lead">I’m <strong>Muhammad Dicky Afriza</strong>, born in Semarang and currently studying Informatics Engineering at <strong>Dian Nuswantoro University</strong>. I love turning ideas into websites that feel quick, clear and a little bit alive.</p>
-      <div class="about-side">
-        <p class="rv">I design and build websites — from landing pages to full-stack web applications. I care about clean code, good user experience, and making things that actually work well, long after launch day.</p>
-        <dl class="facts rv" data-delay="120">
-          <div><dt>Based in</dt><dd>Semarang, ID</dd></div>
-          <div><dt>Studying</dt><dd>Informatics Eng.</dd></div>
-          <div><dt>Focus</dt><dd>Web development</dd></div>
-        </dl>
+      <div class="about-content">
+        <p class="fill lead">I’m <strong>Muhammad Dicky Afriza</strong>, born in Semarang and currently studying Informatics Engineering at <strong>Dian Nuswantoro University</strong>. I love turning ideas into websites that feel quick, clear and a little bit alive.</p>
+        <div class="about-side">
+          <p class="rv">I design and build websites — from landing pages to full-stack web applications. I care about clean code, good user experience, and making things that actually work well, long after launch day.</p>
+          <dl class="facts rv" data-delay="120">
+            <div><dt>Based in</dt><dd>Semarang, ID</dd></div>
+            <div><dt>Studying</dt><dd>Informatics Eng.</dd></div>
+            <div><dt>Focus</dt><dd>Web development</dd></div>
+          </dl>
+        </div>
+      </div>
+
+      <div class="about-card-wrap rv" data-delay="160">
+        <div class="about-card">
+          <div class="about-photo-wrap">
+            <img src="img/dicky-portrait.jpg" alt="Muhammad Dicky Afriza" class="about-photo" loading="lazy" />
+            <div class="about-photo-tag status-tag">
+              <span class="tag-pulse" aria-hidden="true"></span>
+              <span>Available for work</span>
+            </div>
+            <div class="about-photo-tag loc-tag">
+              <span>Semarang, ID 🇮🇩</span>
+            </div>
+          </div>
+          <div class="about-card-body">
+            <div class="about-card-head">
+              <h3>Muhammad Dicky Afriza</h3>
+              <p>Web Developer &amp; Creative Technologist</p>
+            </div>
+            <div class="about-card-actions">
+              <a href="mailto:afrizadicky6@gmail.com" class="about-cta-email" title="Direct Email">
+                <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+                <span>Say Hello</span>
+              </a>
+              <div class="about-mini-socials">
+                <a href="https://instagram.com/dickyafrz" target="_blank" rel="noopener noreferrer" class="about-soc-btn" aria-label="Instagram @dickyafrz" title="Instagram @dickyafrz">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+                </a>
+                <a href="https://github.com/dickyafriza" target="_blank" rel="noopener noreferrer" class="about-soc-btn" aria-label="GitHub @dickyafriza" title="GitHub @dickyafriza">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" aria-hidden="true"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                </a>
+                <a href="https://www.youtube.com/channel/UC7xRxaGHb1D309DKP31NS7w" target="_blank" rel="noopener noreferrer" class="about-soc-btn" aria-label="YouTube Dicky Afriza" title="YouTube Dicky Afriza">
+                  <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor" aria-hidden="true"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -378,6 +497,99 @@
 </section>
 
 </main>
+
+<!-- Quick Profile & Contact Modal -->
+<div class="profile-modal" id="profileModal" aria-hidden="true" role="dialog" aria-labelledby="modalProfileTitle">
+  <div class="profile-backdrop" id="profileBackdrop"></div>
+  <div class="profile-dialog">
+    <button type="button" class="modal-close-btn" id="closeProfileModal" aria-label="Close profile modal">✕</button>
+    <div class="profile-hero">
+      <div class="profile-photo-lg">
+        <img src="img/dicky-portrait.jpg" alt="Muhammad Dicky Afriza" />
+      </div>
+      <div class="profile-info">
+        <h3 id="modalProfileTitle">Muhammad Dicky Afriza</h3>
+        <p class="profile-role">Web Developer &amp; Creative Technologist</p>
+        <div class="profile-tags">
+          <span class="profile-tag"><span class="tag-dot" aria-hidden="true"></span> Available for work</span>
+          <span class="profile-tag">📍 Semarang, ID</span>
+        </div>
+      </div>
+    </div>
+
+    <p class="profile-desc">
+      Halo! Saya fokus merancang dan membangun website yang cepat, interaktif, dan berkesan. Terbuka untuk diskusi proyek freelance, web application kustom, maupun kerja sama tim.
+    </p>
+
+    <div class="contact-channels">
+      <div class="channel-row">
+        <div class="channel-main">
+          <span class="channel-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+          </span>
+          <div class="channel-text">
+            <span class="channel-title">Direct Email</span>
+            <span class="channel-value">afrizadicky6@gmail.com</span>
+          </div>
+        </div>
+        <div class="channel-btn-group">
+          <button type="button" class="channel-action copy-btn" id="copyEmailBtn" data-email="afrizadicky6@gmail.com" aria-label="Copy email address">Copy</button>
+          <a href="mailto:afrizadicky6@gmail.com" class="channel-action" aria-label="Open email client">Send</a>
+        </div>
+      </div>
+
+      <a href="https://instagram.com/dickyafrz" target="_blank" rel="noopener noreferrer" class="channel-row">
+        <div class="channel-main">
+          <span class="channel-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </span>
+          <div class="channel-text">
+            <span class="channel-title">Instagram</span>
+            <span class="channel-value">@dickyafrz</span>
+          </div>
+        </div>
+        <span class="channel-action">Visit ↗</span>
+      </a>
+
+      <a href="https://github.com/dickyafriza" target="_blank" rel="noopener noreferrer" class="channel-row">
+        <div class="channel-main">
+          <span class="channel-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/></svg>
+          </span>
+          <div class="channel-text">
+            <span class="channel-title">GitHub</span>
+            <span class="channel-value">@dickyafriza</span>
+          </div>
+        </div>
+        <span class="channel-action">Visit ↗</span>
+      </a>
+
+      <a href="https://www.youtube.com/channel/UC7xRxaGHb1D309DKP31NS7w" target="_blank" rel="noopener noreferrer" class="channel-row">
+        <div class="channel-main">
+          <span class="channel-icon">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </span>
+          <div class="channel-text">
+            <span class="channel-title">YouTube</span>
+            <span class="channel-value">Dicky Afriza</span>
+          </div>
+        </div>
+        <span class="channel-action">Visit ↗</span>
+      </a>
+    </div>
+
+    <div class="modal-foot-actions">
+      <button type="button" class="modal-btn-chat" id="modalChatBtn">
+        <svg viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/></svg>
+        <span>Chat with Dicky AI</span>
+      </button>
+      <a href="#contact" class="modal-btn-contact" id="modalContactBtn">
+        <span>Contact Form</span>
+        <b aria-hidden="true">→</b>
+      </a>
+    </div>
+  </div>
+</div>
 
 <script src="https://cdn.jsdelivr.net/npm/matter-js@0.19.0/build/matter.min.js" defer></script>
 <script src="js/main.js" defer></script>
