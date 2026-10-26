@@ -19,9 +19,11 @@
 
   const clockEl = $('#clock');
   const tickClock = () => {
-    clockEl.textContent = new Date().toLocaleTimeString('en-GB', {
-      timeZone: 'Asia/Jakarta', hour: '2-digit', minute: '2-digit'
-    });
+    if (clockEl) {
+      clockEl.textContent = new Date().toLocaleTimeString('en-GB', {
+        timeZone: 'Asia/Jakarta', hour: '2-digit', minute: '2-digit'
+      });
+    }
   };
   tickClock();
   setInterval(tickClock, 15000);
